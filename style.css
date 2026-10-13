@@ -450,6 +450,29 @@
     box-shadow: inset 0 0 0 1px rgba(255,255,255,.4), 0 0 10px rgba(80,170,255,.6);
   }
 
+  /* ============ UNDER CONSTRUCTION (sidebar) ============ */
+  .construction { margin-top: 12px; padding-top: 10px; border-top: 1px solid #cfe6fa; }
+  .construction svg { display: block; width: 100%; max-width: 220px; height: auto; margin: 0 auto; }
+  .construction p { margin: 4px 0 0; font-size: 11px; }
+  .construction .swing { transform-origin: 84px 130px; animation: hammer 1.2s ease-in infinite; }
+  .construction .spark { opacity: 0; animation: sparkle 1.2s linear infinite; }
+  .construction .lamp { animation: lampflash 1s steps(2, start) infinite; }
+  @keyframes hammer {
+    0%, 40% { transform: rotate(-70deg); }
+    58%, 68% { transform: rotate(20deg); }
+    100% { transform: rotate(-70deg); }
+  }
+  @keyframes sparkle {
+    0%, 56% { opacity: 0; }
+    58%, 66% { opacity: 1; }
+    72%, 100% { opacity: 0; }
+  }
+  @keyframes lampflash { to { fill: #5a2d00; } }
+  @media (prefers-reduced-motion: reduce) {
+    .construction .swing { animation: none; transform: rotate(-30deg); }
+    .construction .spark, .construction .lamp { animation: none; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #taskbar, .tb-label { transition: none; }
   }

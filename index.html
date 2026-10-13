@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anya's Website</title>
+<style>
+  /* ============ BASICS ============ */
+  body {
+    margin: 0;
+    padding: 8px;
+    background-color: #000033;
+    /* TODO: swap for a tiled background image, e.g. url("images/bg-stars.gif") */
+    background-image:
+      radial-gradient(#fff 1px, transparent 1px),
+      radial-gradient(#ff99ff 1px, transparent 1px);
+    background-size: 40px 40px, 70px 70px;
+    background-position: 0 0, 20px 30px;
+    color: #ffffff;
+    font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive, sans-serif;
+    font-size: 16px;
+  }
+  a { color: #00ffff; }
+  a:visited { color: #ff66ff; }
+  a:hover { color: #ffff00; }
+  img { max-width: 100%; height: auto; }
+
+  #wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    background: #1a0033;
+    border: 4px ridge #ff66cc;
+    padding: 10px;
+  }
+
+  /* ============ GLITTER TITLE ============ */
+  /* Option A: CSS glitter text (default). Option B: replace the <h1> with a
+     glitter text GIF: <img src="images/anyas-website-glitter.gif" alt="Anya's Website"> */
+  h1.glitter {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 3.2rem;
+    line-height: 1.1;
+    font-weight: bold;
+    background-image:
+      radial-gradient(circle, #fff 0 1px, transparent 2px),
+      linear-gradient(90deg, #ff2fb3, #ff9be8, #b36bff, #ff2fb3, #ff9be8);
+    background-size: 14px 14px, 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shimmer 2.5s linear infinite;
+    filter: drop-shadow(2px 2px 0 #330033);
+  }
+  @keyframes shimmer {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 14px 14px, 200% 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    h1.glitter, .blink, marquee { animation: none; }
+  }
+
+  /* ============ BANNERS / PLACEHOLDERS ============ */
+  .ph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #330066;
+    border: 2px dashed #ff99ff;
+    color: #ffccff;
+    font-size: 12px;
+    margin: 6px auto;
+    overflow: hidden;
+  }
+  .ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .banner  { width: 468px; height: 60px; max-width: 100%; }  /* classic 468x60 ad banner */
+  .btn88   { width: 88px;  height: 31px; display: inline-flex; margin: 2px; font-size: 9px; } /* 88x31 button */
+  .skyscr  { width: 120px; height: 240px; }
+  .pic     { width: 100%; height: 160px; }
+
+  .row-center { text-align: center; }
+
+  /* ============ LAYOUT ============ */
+  #layout { display: flex; gap: 10px; align-items: flex-start; }
+  #sidebar { width: 170px; flex-shrink: 0; }
+  #main { flex: 1; min-width: 0; }
+
+  .box {
+    border: 3px outset #ff66cc;
+    background: #2a0050;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  .box h2 {
+    margin: -8px -8px 8px;
+    padding: 4px 8px;
+    font-size: 1rem;
+    background: linear-gradient(90deg, #ff2fb3, #7a2bff);
+    color: #fff;
+    text-shadow: 1px 1px 0 #000;
+  }
+  .nav a { display: block; padding: 3px 0; }
+
+  marquee { background: #000; color: #00ff66; padding: 3px; border: 2px inset #888; }
+  .blink { animation: blink 1s steps(2, start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+  hr.rainbow {
+    border: 0; height: 6px; margin: 10px 0;
+    background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, magenta);
+  }
+
+  /* ============ FAKE 2000s AD BANNERS (pure CSS, no files needed) ============ */
+  a.ad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 6px auto;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    font-family: Impact, "Arial Black", sans-serif;
+    border: 2px solid #000;
+    box-sizing: border-box;
+  }
+  a.ad.wide { width: 468px; height: 60px; max-width: 100%; }
+  a.ad.tall { width: 120px; height: 240px; flex-direction: column; }
+
+  /* Banner 1: burger */
+  .ad-burger { background: linear-gradient(#ffcc00, #ff6600); color: #fff; }
+  .ad-burger .big { font-size: 24px; text-shadow: 2px 2px 0 #b30000; line-height: 1; }
+  .ad-burger .small { font-size: 12px; color: #330000; font-family: "Comic Sans MS", cursive; }
+  .ad-burger .emoji { font-size: 36px; animation: bounce 0.6s ease-in-out infinite alternate; }
+  .ad-burger .cta {
+    background: #b30000; color: #ffff00; padding: 4px 8px; font-size: 14px;
+    border: 2px outset #ff6666; animation: flash 0.8s steps(2, start) infinite;
+  }
+
+  /* Banner 2: visitor prize */
+  .ad-prize { background: #ffff00; color: #d00000; animation: bgflash 0.9s steps(2, start) infinite; }
+  .ad-prize .big { font-size: 22px; }
+  .ad-prize .small { font-size: 12px; color: #000; font-family: Arial, sans-serif; font-weight: bold; }
+  .ad-prize .arrow { font-size: 28px; animation: wiggle 0.4s ease-in-out infinite alternate; }
+
+  /* Banner 3: free smileys */
+  .ad-smiley { background: linear-gradient(90deg, #00ccff, #66ff99); color: #003366; }
+  .ad-smiley .big { font-size: 24px; text-shadow: 1px 1px 0 #fff; }
+  .ad-smiley .face { font-size: 30px; animation: spin 2s linear infinite; display: inline-block; }
+  .ad-smiley .small { font-size: 11px; font-family: Arial, sans-serif; background: #fff; padding: 2px 6px; border: 1px solid #003366; }
+
+  /* Side ad */
+  .ad-side { background: linear-gradient(#6600cc, #ff33cc); color: #ffff00; padding: 6px; }
+  .ad-side .big { font-size: 24px; line-height: 1.05; text-shadow: 2px 2px 0 #000; }
+  .ad-side .emoji { font-size: 44px; animation: shake 0.3s linear infinite; display: inline-block; }
+  .ad-side .cta { background: #00ff00; color: #000; font-size: 14px; padding: 4px 6px; border: 2px outset #99ff99; }
+
+  @keyframes bounce { to { transform: translateY(-8px); } }
+  @keyframes flash  { to { visibility: hidden; } }
+  @keyframes bgflash { to { background: #ff9900; } }
+  @keyframes wiggle { to { transform: translateX(6px); } }
+  @keyframes spin   { to { transform: rotate(360deg); } }
+  @keyframes shake  { 0% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } 100% { transform: rotate(-8deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    a.ad *, a.ad { animation: none !important; }
+  }
+
+  /* ============ DOWNLOAD BUTTONS ============ */
+  .dl-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .dl-item { width: 150px; text-align: center; font-size: 13px; }
+  .dl-item .pic { height: 100px; }
+  a.dl {
+    display: block;
+    margin-top: 4px;
+    padding: 6px 4px;
+    background: linear-gradient(#ffe6fa, #ff99e6 50%, #e65fc4);
+    color: #330033;
+    font-weight: bold;
+    text-decoration: none;
+    border: 3px outset #ffb3ee;
+    border-radius: 4px;
+  }
+  a.dl:visited { color: #330033; }
+  a.dl:hover  { background: linear-gradient(#ffffcc, #ffee66 50%, #ffcc00); }
+  a.dl:active { border-style: inset; }
+
+  /* ============ GUESTBOOK ============ */
+  .gb-form label { display: block; margin-top: 6px; font-size: 14px; }
+  .gb-form input[type=text], .gb-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: #000;
+    color: #00ff66;
+    border: 2px inset #888;
+    font-family: "Courier New", monospace;
+    padding: 4px;
+  }
+  .gb-form button {
+    margin-top: 8px;
+    padding: 6px 14px;
+    font-family: inherit;
+    font-weight: bold;
+    background: #c0c0c0;
+    color: #000;
+    border: 3px outset #eee;
+    cursor: pointer;
+  }
+  .gb-form button:active { border-style: inset; }
+
+  .gb-entry {
+    border: 2px solid #ff99ff;
+    background: #1a0033;
+    margin-top: 10px;
+    display: flex;
+  }
+  .gb-user {
+    width: 120px;
+    flex-shrink: 0;
+    padding: 6px;
+    background: #330066;
+    border-right: 2px solid #ff99ff;
+    font-size: 12px;
+    word-break: break-word;
+  }
+  .gb-user b { font-size: 14px; color: #ffff66; }
+  .gb-post { padding: 6px; flex: 1; min-width: 0; word-break: break-word; }
+  .gb-sig {
+    margin-top: 10px;
+    padding-top: 4px;
+    border-top: 1px dashed #ff99ff;
+    font-size: 12px;
+    color: #ccaaff;
+    white-space: pre-wrap;
+  }
+  .gb-date { font-size: 11px; color: #aa88dd; margin-bottom: 4px; }
+
+  footer { text-align: center; font-size: 12px; margin-top: 10px; color: #ccaaff; }
+
+  @media (max-width: 640px) {
+    #layout { flex-direction: column; }
+    #sidebar { width: 100%; }
+    h1.glitter { font-size: 2.2rem; }
+    .gb-entry { flex-direction: column; }
+    .gb-user { width: auto; border-right: 0; border-bottom: 2px solid #ff99ff; }
+  }
+</style>
+</head>
+<body>
+<div id="wrapper">
+
+  <!-- ============ HEADER ============ -->
+  <div class="row-center">
+    <!-- TODO: gif of sparkles / stars / pets here -->
+    <div class="ph btn88" style="width:60px;height:60px;display:inline-flex;">GIF</div>
+    <h1 class="glitter" style="display:inline-block;margin:10px 8px;">Anya's Website</h1>
+    <div class="ph btn88" style="width:60px;height:60px;display:inline-flex;">GIF</div>
+  </div>
+
+  <!-- TODO: top ad banner (468x60) -->
+  <a class="ad wide ad-burger" href="#" aria-label="Fake ad: Anya's Burgers">
+    <span class="emoji">&#127828;</span>
+    <span><span class="big">ANYA'S BURGERS</span><br><span class="small">Now with 50% more glitter!</span></span>
+    <span class="cta">CLICK HERE!!</span>
+  </a>
+
+  <marquee scrollamount="5">*~*~* Welcome to my page!! Click a button to download stuff!! Don't forget to sign my guestbook!! *~*~*</marquee>
+
+  <hr class="rainbow">
+
+  <div id="layout">
+
+    <!-- ============ SIDEBAR ============ -->
+    <div id="sidebar">
+      <div class="box nav">
+        <h2>Menu</h2>
+        <a href="#downloads">Downloads</a>
+        <a href="#guestbook">Guestbook</a>
+        <a href="#links">Links</a>
+      </div>
+
+      <div class="box row-center">
+        <h2>Me!</h2>
+        <!-- TODO: your picture / avatar -->
+        <div class="ph pic" style="height:120px;"><img src="images/avatar.gif" alt="" onerror="this.replaceWith(document.createTextNode('AVATAR 150x120'))"></div>
+        <div style="font-size:13px;">Write something about yourself here.</div>
+      </div>
+
+      <!-- TODO: skyscraper ad -->
+      <a class="ad tall ad-side" href="#" aria-label="Fake ad: win a free MP3 player">
+        <span class="big">WIN A FREE MP3 PLAYER!!!</span>
+        <span class="emoji">&#127911;</span>
+        <span class="cta">CLICK NOW</span>
+      </a>
+
+      <div class="box row-center">
+        <h2>Visitors</h2>
+        <div style="font-family:'Courier New',monospace;background:#000;color:#ff3333;font-size:20px;letter-spacing:3px;border:2px inset #888;padding:2px;">000042</div>
+        <div style="font-size:11px;margin-top:4px;">(fake counter for now)</div>
+      </div>
+    </div>
+
+    <!-- ============ MAIN ============ -->
+    <div id="main">
+
+      <div class="box row-center">
+        <span class="blink">&#9733;</span>
+        <b>UNDER CONSTRUCTION</b>
+        <span class="blink">&#9733;</span>
+        <!-- TODO: construction gif -->
+        <div class="ph btn88" style="width:120px;height:40px;display:flex;">CONSTRUCTION GIF</div>
+      </div>
+
+      <!-- ===== DOWNLOADS ===== -->
+      <div class="box" id="downloads">
+        <h2>~ Downloads ~</h2>
+        <p style="font-size:14px;margin-top:0;">Click a button and the file saves to your computer. Files live in the <code>files/</code> folder of this repo.</p>
+
+        <div class="dl-grid">
+
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/dl1.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 1'))"></div>
+            File Name One
+            <a class="dl" href="files/file1.zip" download>DOWNLOAD</a>
+          </div>
+
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/dl2.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 2'))"></div>
+            File Name Two
+            <a class="dl" href="files/file2.zip" download>DOWNLOAD</a>
+          </div>
+
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/dl3.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 3'))"></div>
+            File Name Three
+            <a class="dl" href="files/file3.zip" download>DOWNLOAD</a>
+          </div>
+
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/dl4.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 4'))"></div>
+            File Name Four
+            <a class="dl" href="files/file4.zip" download>DOWNLOAD</a>
+          </div>
+
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/dl5.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 5'))"></div>
+            File Name Five
+            <a class="dl" href="files/file5.zip" download>DOWNLOAD</a>
+          </div>
+
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/dl6.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 6'))"></div>
+            File Name Six
+            <a class="dl" href="files/file6.zip" download>DOWNLOAD</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- mid-page ad banner -->
+      <a class="ad wide ad-prize" href="#" aria-label="Fake ad: you are the 1,000,000th visitor">
+    <span class="arrow">&#9654;</span>
+    <span><span class="big">YOU ARE VISITOR #1,000,000!!</span><br><span class="small">Click here to claim your FREE prize!</span></span>
+    <span class="arrow">&#9664;</span>
+  </a>
+
+      <!-- ===== GUESTBOOK ===== -->
+      <div class="box" id="guestbook">
+        <h2>~ Sign My Guestbook! ~</h2>
+
+        <form class="gb-form" id="gbForm">
+          <label for="gbName">Name:</label>
+          <input type="text" id="gbName" maxlength="30" required>
+
+          <label for="gbMsg">Your message:</label>
+          <textarea id="gbMsg" rows="4" maxlength="500" required></textarea>
+
+          <label for="gbSig">Forum signature (optional):</label>
+          <textarea id="gbSig" rows="2" maxlength="200" placeholder="~*~ your cool signature here ~*~"></textarea>
+
+          <button type="submit">Sign Guestbook</button>
+        </form>
+
+        <div id="gbEntries">
+          <!-- Sample entry (delete once you have real ones) -->
+          <div class="gb-entry">
+            <div class="gb-user"><b>Friend123</b><br>Guest<br>Posts: 1</div>
+            <div class="gb-post">
+              <div class="gb-date">Posted: 01/01/2000</div>
+              cool site!!! love the glitter text
+              <div class="gb-sig">~*~ stay cool, stay 2000 ~*~</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:11px;color:#aa88dd;">
+          Heads up: right now entries only save in YOUR browser (GitHub Pages has no server).
+          We'll wire up a real shared guestbook once the design is done.
+        </p>
+      </div>
+
+      <!-- ===== LINKS ===== -->
+      <div class="box row-center" id="links">
+        <h2>~ Links &amp; Buttons ~</h2>
+        <!-- TODO: 88x31 buttons from friends / sites you like -->
+        <div class="ph btn88">88x31</div>
+        <div class="ph btn88">88x31</div>
+        <div class="ph btn88">88x31</div>
+        <div class="ph btn88">88x31</div>
+        <div class="ph btn88">88x31</div>
+        <div class="ph btn88">88x31</div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="rainbow">
+
+  <!-- bottom banner -->
+  <a class="ad wide ad-smiley" href="#" aria-label="Fake ad: free smileys">
+    <span class="face">&#128515;</span>
+    <span class="big">FREE SMILEYS!!!</span>
+    <span class="small">100% virus free*</span>
+    <span class="face">&#128526;</span>
+  </a>
+
+  <footer>
+    Best viewed in Netscape Navigator at 800x600 &#9733; &copy; Anya's Website
+  </footer>
+</div>
+
+<script>
+  // Demo guestbook: saves to this browser only (localStorage).
+  (function () {
+    var KEY = "anya-guestbook";
+    var list = document.getElementById("gbEntries");
+    var form = document.getElementById("gbForm");
+
+    function esc(s) {
+      return s.replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+    function load() {
+      try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+    }
+    function render(entry, n) {
+      var div = document.createElement("div");
+      div.className = "gb-entry";
+      div.innerHTML =
+        '<div class="gb-user"><b>' + esc(entry.name) + '</b><br>Guest<br>Posts: ' + n + '</div>' +
+        '<div class="gb-post"><div class="gb-date">Posted: ' + esc(entry.date) + '</div>' +
+        esc(entry.msg).replace(/\n/g, "<br>") +
+        (entry.sig ? '<div class="gb-sig">' + esc(entry.sig) + '</div>' : '') + '</div>';
+      list.insertBefore(div, list.firstChild);
+    }
+
+    var saved = load();
+    saved.forEach(function (e, i) { render(e, i + 1); });
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var entry = {
+        name: document.getElementById("gbName").value.trim(),
+        msg: document.getElementById("gbMsg").value.trim(),
+        sig: document.getElementById("gbSig").value.trim(),
+        date: new Date().toLocaleDateString()
+      };
+      if (!entry.name || !entry.msg) return;
+      saved.push(entry);
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      render(entry, saved.length);
+      form.reset();
+    });
+  })();
+</script>
+</body>
+</html>

@@ -4,436 +4,406 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anya's Website</title>
-<style>
-  /* ============ BASICS ============ */
-  body {
-    margin: 0;
-    padding: 8px;
-    background-color: #000033;
-    /* TODO: swap for a tiled background image, e.g. url("images/bg-stars.gif") */
-    background-image:
-      radial-gradient(#fff 1px, transparent 1px),
-      radial-gradient(#ff99ff 1px, transparent 1px);
-    background-size: 40px 40px, 70px 70px;
-    background-position: 0 0, 20px 30px;
-    color: #ffffff;
-    font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive, sans-serif;
-    font-size: 16px;
-  }
-  a { color: #00ffff; }
-  a:visited { color: #ff66ff; }
-  a:hover { color: #ffff00; }
-  img { max-width: 100%; height: auto; }
-
-  #wrapper {
-    max-width: 860px;
-    margin: 0 auto;
-    background: #1a0033;
-    border: 4px ridge #ff66cc;
-    padding: 10px;
-  }
-
-  /* ============ GLITTER TITLE ============ */
-  /* Option A: CSS glitter text (default). Option B: replace the <h1> with a
-     glitter text GIF: <img src="images/anyas-website-glitter.gif" alt="Anya's Website"> */
-  h1.glitter {
-    margin: 10px 0;
-    text-align: center;
-    font-size: 3.2rem;
-    line-height: 1.1;
-    font-weight: bold;
-    background-image:
-      radial-gradient(circle, #fff 0 1px, transparent 2px),
-      linear-gradient(90deg, #ff2fb3, #ff9be8, #b36bff, #ff2fb3, #ff9be8);
-    background-size: 14px 14px, 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: shimmer 2.5s linear infinite;
-    filter: drop-shadow(2px 2px 0 #330033);
-  }
-  @keyframes shimmer {
-    from { background-position: 0 0, 0 0; }
-    to   { background-position: 14px 14px, 200% 0; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    h1.glitter, .blink, marquee { animation: none; }
-  }
-
-  /* ============ BANNERS / PLACEHOLDERS ============ */
-  .ph {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: #330066;
-    border: 2px dashed #ff99ff;
-    color: #ffccff;
-    font-size: 12px;
-    margin: 6px auto;
-    overflow: hidden;
-  }
-  .ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .banner  { width: 468px; height: 60px; max-width: 100%; }  /* classic 468x60 ad banner */
-  .btn88   { width: 88px;  height: 31px; display: inline-flex; margin: 2px; font-size: 9px; } /* 88x31 button */
-  .skyscr  { width: 120px; height: 240px; }
-  .pic     { width: 100%; height: 160px; }
-
-  .row-center { text-align: center; }
-
-  /* ============ LAYOUT ============ */
-  #layout { display: flex; gap: 10px; align-items: flex-start; }
-  #sidebar { width: 170px; flex-shrink: 0; }
-  #main { flex: 1; min-width: 0; }
-
-  .box {
-    border: 3px outset #ff66cc;
-    background: #2a0050;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  .box h2 {
-    margin: -8px -8px 8px;
-    padding: 4px 8px;
-    font-size: 1rem;
-    background: linear-gradient(90deg, #ff2fb3, #7a2bff);
-    color: #fff;
-    text-shadow: 1px 1px 0 #000;
-  }
-  .nav a { display: block; padding: 3px 0; }
-
-  marquee { background: #000; color: #00ff66; padding: 3px; border: 2px inset #888; }
-  .blink { animation: blink 1s steps(2, start) infinite; }
-  @keyframes blink { to { visibility: hidden; } }
-  hr.rainbow {
-    border: 0; height: 6px; margin: 10px 0;
-    background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, magenta);
-  }
-
-  /* ============ FAKE 2000s AD BANNERS (pure CSS, no files needed) ============ */
-  a.ad {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 6px auto;
-    overflow: hidden;
-    text-decoration: none;
-    text-align: center;
-    font-family: Impact, "Arial Black", sans-serif;
-    border: 2px solid #000;
-    box-sizing: border-box;
-  }
-  a.ad.wide { width: 468px; height: 60px; max-width: 100%; }
-  a.ad.tall { width: 120px; height: 240px; flex-direction: column; }
-
-  /* Banner 1: burger */
-  .ad-burger { background: linear-gradient(#ffcc00, #ff6600); color: #fff; }
-  .ad-burger .big { font-size: 24px; text-shadow: 2px 2px 0 #b30000; line-height: 1; }
-  .ad-burger .small { font-size: 12px; color: #330000; font-family: "Comic Sans MS", cursive; }
-  .ad-burger .emoji { font-size: 36px; animation: bounce 0.6s ease-in-out infinite alternate; }
-  .ad-burger .cta {
-    background: #b30000; color: #ffff00; padding: 4px 8px; font-size: 14px;
-    border: 2px outset #ff6666; animation: flash 0.8s steps(2, start) infinite;
-  }
-
-  /* Banner 2: visitor prize */
-  .ad-prize { background: #ffff00; color: #d00000; animation: bgflash 0.9s steps(2, start) infinite; }
-  .ad-prize .big { font-size: 22px; }
-  .ad-prize .small { font-size: 12px; color: #000; font-family: Arial, sans-serif; font-weight: bold; }
-  .ad-prize .arrow { font-size: 28px; animation: wiggle 0.4s ease-in-out infinite alternate; }
-
-  /* Banner 3: free smileys */
-  .ad-smiley { background: linear-gradient(90deg, #00ccff, #66ff99); color: #003366; }
-  .ad-smiley .big { font-size: 24px; text-shadow: 1px 1px 0 #fff; }
-  .ad-smiley .face { font-size: 30px; animation: spin 2s linear infinite; display: inline-block; }
-  .ad-smiley .small { font-size: 11px; font-family: Arial, sans-serif; background: #fff; padding: 2px 6px; border: 1px solid #003366; }
-
-  /* Side ad */
-  .ad-side { background: linear-gradient(#6600cc, #ff33cc); color: #ffff00; padding: 6px; }
-  .ad-side .big { font-size: 24px; line-height: 1.05; text-shadow: 2px 2px 0 #000; }
-  .ad-side .emoji { font-size: 44px; animation: shake 0.3s linear infinite; display: inline-block; }
-  .ad-side .cta { background: #00ff00; color: #000; font-size: 14px; padding: 4px 6px; border: 2px outset #99ff99; }
-
-  @keyframes bounce { to { transform: translateY(-8px); } }
-  @keyframes flash  { to { visibility: hidden; } }
-  @keyframes bgflash { to { background: #ff9900; } }
-  @keyframes wiggle { to { transform: translateX(6px); } }
-  @keyframes spin   { to { transform: rotate(360deg); } }
-  @keyframes shake  { 0% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } 100% { transform: rotate(-8deg); } }
-  @media (prefers-reduced-motion: reduce) {
-    a.ad *, a.ad { animation: none !important; }
-  }
-
-  /* ============ DOWNLOAD BUTTONS ============ */
-  .dl-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .dl-item { width: 150px; text-align: center; font-size: 13px; }
-  .dl-item .pic { height: 100px; }
-  a.dl {
-    display: block;
-    margin-top: 4px;
-    padding: 6px 4px;
-    background: linear-gradient(#ffe6fa, #ff99e6 50%, #e65fc4);
-    color: #330033;
-    font-weight: bold;
-    text-decoration: none;
-    border: 3px outset #ffb3ee;
-    border-radius: 4px;
-  }
-  a.dl:visited { color: #330033; }
-  a.dl:hover  { background: linear-gradient(#ffffcc, #ffee66 50%, #ffcc00); }
-  a.dl:active { border-style: inset; }
-
-  /* ============ GUESTBOOK ============ */
-  .gb-form label { display: block; margin-top: 6px; font-size: 14px; }
-  .gb-form input[type=text], .gb-form textarea {
-    width: 100%;
-    box-sizing: border-box;
-    background: #000;
-    color: #00ff66;
-    border: 2px inset #888;
-    font-family: "Courier New", monospace;
-    padding: 4px;
-  }
-  .gb-form button {
-    margin-top: 8px;
-    padding: 6px 14px;
-    font-family: inherit;
-    font-weight: bold;
-    background: #c0c0c0;
-    color: #000;
-    border: 3px outset #eee;
-    cursor: pointer;
-  }
-  .gb-form button:active { border-style: inset; }
-
-  .gb-entry {
-    border: 2px solid #ff99ff;
-    background: #1a0033;
-    margin-top: 10px;
-    display: flex;
-  }
-  .gb-user {
-    width: 120px;
-    flex-shrink: 0;
-    padding: 6px;
-    background: #330066;
-    border-right: 2px solid #ff99ff;
-    font-size: 12px;
-    word-break: break-word;
-  }
-  .gb-user b { font-size: 14px; color: #ffff66; }
-  .gb-post { padding: 6px; flex: 1; min-width: 0; word-break: break-word; }
-  .gb-sig {
-    margin-top: 10px;
-    padding-top: 4px;
-    border-top: 1px dashed #ff99ff;
-    font-size: 12px;
-    color: #ccaaff;
-    white-space: pre-wrap;
-  }
-  .gb-date { font-size: 11px; color: #aa88dd; margin-bottom: 4px; }
-
-  footer { text-align: center; font-size: 12px; margin-top: 10px; color: #ccaaff; }
-
-  @media (max-width: 640px) {
-    #layout { flex-direction: column; }
-    #sidebar { width: 100%; }
-    h1.glitter { font-size: 2.2rem; }
-    .gb-entry { flex-direction: column; }
-    .gb-user { width: auto; border-right: 0; border-bottom: 2px solid #ff99ff; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<button id="musicBtn" type="button" aria-label="Play music">
+  <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>
+  <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+</button>
+
+<!-- ============ TASKBAR (copy this block into every page; add one link per new page) ============ -->
+<nav id="taskbar" aria-label="Main navigation">
+  <a class="tb-link" href="index.html" aria-current="page">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><defs><radialGradient id="gOrbHome" cx=".35" cy=".25" r=".9"><stop offset="0" stop-color="#9fe0ff"/><stop offset="1" stop-color="#0a56bd"/></radialGradient></defs><circle cx="20" cy="20" r="18" fill="url(#gOrbHome)" stroke="#06306b"/><path d="M20 9.5L9.5 19.5H13V29.5H18V23H22V29.5H27V19.5H30.5Z" fill="#fff"/><path d="M5 17A15 15 0 0 1 35 17Q20 24 5 17Z" fill="#fff" opacity=".45"/></svg>
+    <span class="tb-label">Home</span>
+  </a>
+  <a class="tb-link" href="about.html">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><defs><radialGradient id="gOrbAbout" cx=".35" cy=".25" r=".9"><stop offset="0" stop-color="#9fe0ff"/><stop offset="1" stop-color="#0a56bd"/></radialGradient></defs><circle cx="20" cy="20" r="18" fill="url(#gOrbAbout)" stroke="#06306b"/><circle cx="20" cy="12.5" r="2.4" fill="#fff"/><rect x="17.8" y="17" width="4.4" height="13" rx="1.8" fill="#fff"/><path d="M5 17A15 15 0 0 1 35 17Q20 24 5 17Z" fill="#fff" opacity=".45"/></svg>
+    <span class="tb-label">About</span>
+  </a>
+</nav>
+
 <div id="wrapper">
 
   <!-- ============ HEADER ============ -->
-  <div class="row-center">
-    <!-- TODO: gif of sparkles / stars / pets here -->
-    <div class="ph btn88" style="width:60px;height:60px;display:inline-flex;">GIF</div>
-    <h1 class="glitter" style="display:inline-block;margin:10px 8px;">Anya's Website</h1>
-    <div class="ph btn88" style="width:60px;height:60px;display:inline-flex;">GIF</div>
+  <div class="hero">
+    <h1 class="glitter">Anya's Website</h1>
   </div>
 
-  <!-- TODO: top ad banner (468x60) -->
-  <a class="ad wide ad-burger" href="#" aria-label="Fake ad: Anya's Burgers">
-    <span class="emoji">&#127828;</span>
-    <span><span class="big">ANYA'S BURGERS</span><br><span class="small">Now with 50% more glitter!</span></span>
-    <span class="cta">CLICK HERE!!</span>
-  </a>
-
-  <marquee scrollamount="5">*~*~* Welcome to my page!! Click a button to download stuff!! Don't forget to sign my guestbook!! *~*~*</marquee>
-
-  <hr class="rainbow">
+  <marquee scrollamount="5">*~*~* Welcome to my page!! Pick a category and click a button to download stuff!! Don't forget to sign my guestbook!! *~*~*</marquee>
 
   <div id="layout">
-
-    <!-- ============ SIDEBAR ============ -->
-    <div id="sidebar">
-      <div class="box nav">
-        <h2>Menu</h2>
-        <a href="#downloads">Downloads</a>
-        <a href="#guestbook">Guestbook</a>
-        <a href="#links">Links</a>
-      </div>
-
-      <div class="box row-center">
-        <h2>Me!</h2>
-        <!-- TODO: your picture / avatar -->
-        <div class="ph pic" style="height:120px;"><img src="images/avatar.gif" alt="" onerror="this.replaceWith(document.createTextNode('AVATAR 150x120'))"></div>
-        <div style="font-size:13px;">Write something about yourself here.</div>
-      </div>
-
-      <!-- TODO: skyscraper ad -->
-      <a class="ad tall ad-side" href="#" aria-label="Fake ad: win a free MP3 player">
-        <span class="big">WIN A FREE MP3 PLAYER!!!</span>
-        <span class="emoji">&#127911;</span>
-        <span class="cta">CLICK NOW</span>
-      </a>
-
-      <div class="box row-center">
-        <h2>Visitors</h2>
-        <div style="font-family:'Courier New',monospace;background:#000;color:#ff3333;font-size:20px;letter-spacing:3px;border:2px inset #888;padding:2px;">000042</div>
-        <div style="font-size:11px;margin-top:4px;">(fake counter for now)</div>
-      </div>
-    </div>
 
     <!-- ============ MAIN ============ -->
     <div id="main">
 
-      <div class="box row-center">
-        <span class="blink">&#9733;</span>
-        <b>UNDER CONSTRUCTION</b>
-        <span class="blink">&#9733;</span>
-        <!-- TODO: construction gif -->
-        <div class="ph btn88" style="width:120px;height:40px;display:flex;">CONSTRUCTION GIF</div>
-      </div>
-
       <!-- ===== DOWNLOADS ===== -->
       <div class="box" id="downloads">
-        <h2>~ Downloads ~</h2>
-        <p style="font-size:14px;margin-top:0;">Click a button and the file saves to your computer. Files live in the <code>files/</code> folder of this repo.</p>
+        <h2>Downloads</h2>
+        <div class="pad">
+          <p style="margin-top:0;">Pick a category, then click a button and the file saves to your computer.</p>
 
-        <div class="dl-grid">
-
+          <!-- MOVIES -->
+          <details class="cat">
+            <summary>
+              <svg class="cat-icon" viewBox="0 0 48 48" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gMovBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a6a96"/><stop offset="1" stop-color="#0b1730"/></linearGradient>
+                  <linearGradient id="gMovScreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fe0ff"/><stop offset="1" stop-color="#1c7be0"/></linearGradient>
+                </defs>
+                <rect x="3" y="7" width="42" height="34" rx="5" fill="url(#gMovBody)" stroke="#06142e"/>
+                <g fill="#fff" opacity=".9">
+                  <rect x="6" y="10" width="4" height="4" rx="1"/><rect x="6" y="17" width="4" height="4" rx="1"/><rect x="6" y="24" width="4" height="4" rx="1"/><rect x="6" y="31" width="4" height="4" rx="1"/>
+                  <rect x="38" y="10" width="4" height="4" rx="1"/><rect x="38" y="17" width="4" height="4" rx="1"/><rect x="38" y="24" width="4" height="4" rx="1"/><rect x="38" y="31" width="4" height="4" rx="1"/>
+                </g>
+                <rect x="13" y="12" width="22" height="24" rx="2" fill="url(#gMovScreen)" stroke="#0a3a80"/>
+                <path d="M21 18v12l9-6z" fill="#fff"/>
+                <path d="M3 12Q3 7 8 7H40Q45 7 45 12V22Q24 28 3 22Z" fill="#fff" opacity=".25"/>
+              </svg>
+              <span>Movies <span class="cat-count">(3 files)</span></span>
+            </summary>
+            <div class="cat-body"><div class="dl-grid">
           <div class="dl-item">
-            <div class="ph pic"><img src="images/dl1.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 1'))"></div>
-            File Name One
-            <a class="dl" href="files/file1.zip" download>DOWNLOAD</a>
+            <div class="ph pic"><img src="images/movies/movies1.gif" alt="" onerror="this.replaceWith(document.createTextNode('movies1.gif'))"></div>
+            <div class="dl-name">Movie One</div>
+            <a class="dl" href="files/movies/movies1.zip" download>DOWNLOAD</a>
           </div>
 
           <div class="dl-item">
-            <div class="ph pic"><img src="images/dl2.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 2'))"></div>
-            File Name Two
-            <a class="dl" href="files/file2.zip" download>DOWNLOAD</a>
+            <div class="ph pic"><img src="images/movies/movies2.gif" alt="" onerror="this.replaceWith(document.createTextNode('movies2.gif'))"></div>
+            <div class="dl-name">Movie Two</div>
+            <a class="dl" href="files/movies/movies2.zip" download>DOWNLOAD</a>
           </div>
 
           <div class="dl-item">
-            <div class="ph pic"><img src="images/dl3.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 3'))"></div>
-            File Name Three
-            <a class="dl" href="files/file3.zip" download>DOWNLOAD</a>
+            <div class="ph pic"><img src="images/movies/movies3.gif" alt="" onerror="this.replaceWith(document.createTextNode('movies3.gif'))"></div>
+            <div class="dl-name">Movie Three</div>
+            <a class="dl" href="files/movies/movies3.zip" download>DOWNLOAD</a>
+          </div>
+
+            </div></div>
+          </details>
+
+          <!-- GAMES -->
+          <details class="cat">
+            <summary>
+              <svg class="cat-icon" viewBox="0 0 48 48" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gPad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf7ff"/><stop offset="1" stop-color="#5aa6e6"/></linearGradient>
+                  <radialGradient id="gBtnG" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#d6ffb8"/><stop offset="1" stop-color="#2f9e14"/></radialGradient>
+                  <radialGradient id="gBtnO" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffe3a8"/><stop offset="1" stop-color="#e07a00"/></radialGradient>
+                </defs>
+                <path d="M10 15Q6 15 5 26Q4 38 10 38Q14 38 17 31H31Q34 38 38 38Q44 38 43 26Q42 15 38 15Z" fill="url(#gPad)" stroke="#1a4f8f" stroke-width="1.5"/>
+                <rect x="17" y="19" width="4" height="12" rx="1" fill="#123a70"/>
+                <rect x="13" y="23" width="12" height="4" rx="1" fill="#123a70"/>
+                <circle cx="33" cy="21" r="3" fill="url(#gBtnG)"/>
+                <circle cx="38" cy="26" r="3" fill="url(#gBtnO)"/>
+                <path d="M10 15Q6 15 5.4 22Q24 27 42.6 22Q42 15 38 15Z" fill="#fff" opacity=".4"/>
+              </svg>
+              <span>Games <span class="cat-count">(3 files)</span></span>
+            </summary>
+            <div class="cat-body"><div class="dl-grid">
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/games/games1.gif" alt="" onerror="this.replaceWith(document.createTextNode('games1.gif'))"></div>
+            <div class="dl-name">Game One</div>
+            <a class="dl" href="files/games/games1.zip" download>DOWNLOAD</a>
           </div>
 
           <div class="dl-item">
-            <div class="ph pic"><img src="images/dl4.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 4'))"></div>
-            File Name Four
-            <a class="dl" href="files/file4.zip" download>DOWNLOAD</a>
+            <div class="ph pic"><img src="images/games/games2.gif" alt="" onerror="this.replaceWith(document.createTextNode('games2.gif'))"></div>
+            <div class="dl-name">Game Two</div>
+            <a class="dl" href="files/games/games2.zip" download>DOWNLOAD</a>
           </div>
 
           <div class="dl-item">
-            <div class="ph pic"><img src="images/dl5.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 5'))"></div>
-            File Name Five
-            <a class="dl" href="files/file5.zip" download>DOWNLOAD</a>
+            <div class="ph pic"><img src="images/games/games3.gif" alt="" onerror="this.replaceWith(document.createTextNode('games3.gif'))"></div>
+            <div class="dl-name">Game Three</div>
+            <a class="dl" href="files/games/games3.zip" download>DOWNLOAD</a>
+          </div>
+
+            </div></div>
+          </details>
+
+          <!-- WAREZ -->
+          <details class="cat">
+            <summary>
+              <svg class="cat-icon" viewBox="0 0 48 48" aria-hidden="true">
+                <defs>
+                  <radialGradient id="gDisc" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#bfe3ff"/><stop offset="1" stop-color="#4f95d6"/></radialGradient>
+                </defs>
+                <circle cx="24" cy="24" r="20" fill="url(#gDisc)" stroke="#2a68ad" stroke-width="1.5"/>
+                <circle cx="24" cy="24" r="11" fill="none" stroke="#2a68ad" stroke-opacity=".35"/>
+                <circle cx="24" cy="24" r="6" fill="#fff" stroke="#2a68ad"/>
+                <circle cx="24" cy="24" r="2.5" fill="#6fb3f0"/>
+                <path d="M9 17A17 17 0 0 1 31 7.5L24 24Z" fill="#fff" opacity=".4"/>
+              </svg>
+              <span>WareZ <span class="cat-count">(3 files)</span></span>
+            </summary>
+            <div class="cat-body"><div class="dl-grid">
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/warez/warez1.gif" alt="" onerror="this.replaceWith(document.createTextNode('warez1.gif'))"></div>
+            <div class="dl-name">Ware One</div>
+            <a class="dl" href="files/warez/warez1.zip" download>DOWNLOAD</a>
           </div>
 
           <div class="dl-item">
-            <div class="ph pic"><img src="images/dl6.gif" alt="" onerror="this.replaceWith(document.createTextNode('PIC 6'))"></div>
-            File Name Six
-            <a class="dl" href="files/file6.zip" download>DOWNLOAD</a>
+            <div class="ph pic"><img src="images/warez/warez2.gif" alt="" onerror="this.replaceWith(document.createTextNode('warez2.gif'))"></div>
+            <div class="dl-name">Ware Two</div>
+            <a class="dl" href="files/warez/warez2.zip" download>DOWNLOAD</a>
           </div>
+
+          <div class="dl-item">
+            <div class="ph pic"><img src="images/warez/warez3.gif" alt="" onerror="this.replaceWith(document.createTextNode('warez3.gif'))"></div>
+            <div class="dl-name">Ware Three</div>
+            <a class="dl" href="files/warez/warez3.zip" download>DOWNLOAD</a>
+          </div>
+
+            </div></div>
+          </details>
 
         </div>
       </div>
 
-      <!-- mid-page ad banner -->
-      <a class="ad wide ad-prize" href="#" aria-label="Fake ad: you are the 1,000,000th visitor">
-    <span class="arrow">&#9654;</span>
-    <span><span class="big">YOU ARE VISITOR #1,000,000!!</span><br><span class="small">Click here to claim your FREE prize!</span></span>
-    <span class="arrow">&#9664;</span>
-  </a>
+      <!-- fake ad banner -->
+      <a class="ad ad-prize" id="prizeAd" href="#" role="button" aria-haspopup="dialog" aria-label="Fake ad: you are the 1,000,000th visitor. Opens a video player.">
+        <span class="arrow">&#9654;</span>
+        <span><span class="big">YOU ARE VISITOR #1,000,000!!</span><br><span class="small">Click here to claim your FREE prize!</span></span>
+        <span class="arrow">&#9664;</span>
+      </a>
 
-      <!-- ===== GUESTBOOK ===== -->
-      <div class="box" id="guestbook">
-        <h2>~ Sign My Guestbook! ~</h2>
+      <!-- ===== GUESTBOOK (instant-message style) ===== -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="imMan" viewBox="0 0 48 48">
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <g stroke="#6b4e00" stroke-width="7.5">
+              <path d="M26 17L21 28"/><path d="M26 18L35 22L40 16"/><path d="M25 19L16 20L10 25"/>
+              <path d="M21 28L30 33L28 43"/><path d="M21 28L14 36L7 34"/>
+            </g>
+            <g stroke="#ffd21f" stroke-width="4.5">
+              <path d="M26 17L21 28"/><path d="M26 18L35 22L40 16"/><path d="M25 19L16 20L10 25"/>
+              <path d="M21 28L30 33L28 43"/><path d="M21 28L14 36L7 34"/>
+            </g>
+          </g>
+          <circle cx="29" cy="9.5" r="6.5" fill="#ffd21f" stroke="#6b4e00" stroke-width="2"/>
+          <ellipse cx="27" cy="7.5" rx="2.6" ry="1.6" fill="#fff" opacity=".6"/>
+        </symbol>
+      </svg>
+      <section class="im" id="guestbook" aria-label="Guestbook">
+        <div class="im-titlebar">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#imMan"/></svg>
+          <span class="im-title">Sign My Guestbook! - Instant Message with Anya</span>
+          <span class="im-winbtns" aria-hidden="true"><i>_</i><i>&#9633;</i><i>x</i></span>
+        </div>
+        <div class="im-menu" aria-hidden="true"><span>File</span><span>Edit</span><span>Insert</span><span>People</span></div>
 
-        <form class="gb-form" id="gbForm">
-          <label for="gbName">Name:</label>
+        <div class="im-main">
+          <div class="im-log" id="imLog" role="log" aria-live="polite">
+            <div class="im-sys"><b>Anya</b> has signed on. Leave a message below!</div>
+            <!-- Sample entry (delete once you have real ones) -->
+            <div class="im-msg">
+              <span class="im-name">Friend123</span> <span class="im-time">(12:01 AM)</span>: cool site!!! love the glitter text
+              <div class="im-sig">~*~ stay cool, stay 2007 ~*~</div>
+            </div>
+          </div>
+          <div class="im-side" aria-hidden="true">
+            <div class="im-buddy"><svg viewBox="0 0 48 48"><use href="#imMan"/></svg></div>
+            Anya
+          </div>
+        </div>
+
+        <form class="im-form" id="gbForm">
+          <div class="im-toolbar" aria-hidden="true">
+            <span class="im-tool">A</span><span class="im-tool" style="font-size:15px;">A</span>
+            <span class="im-tool">B</span><span class="im-tool"><i>I</i></span><span class="im-tool"><u>U</u></span>
+            <span class="im-tool">&#9786;</span>
+          </div>
+
+          <label for="gbName">Your screen name:</label>
           <input type="text" id="gbName" maxlength="30" required>
 
-          <label for="gbMsg">Your message:</label>
-          <textarea id="gbMsg" rows="4" maxlength="500" required></textarea>
+          <label for="gbMsg">Message:</label>
+          <textarea id="gbMsg" rows="3" maxlength="500" required></textarea>
 
           <label for="gbSig">Forum signature (optional):</label>
           <textarea id="gbSig" rows="2" maxlength="200" placeholder="~*~ your cool signature here ~*~"></textarea>
 
-          <button type="submit">Sign Guestbook</button>
-        </form>
-
-        <div id="gbEntries">
-          <!-- Sample entry (delete once you have real ones) -->
-          <div class="gb-entry">
-            <div class="gb-user"><b>Friend123</b><br>Guest<br>Posts: 1</div>
-            <div class="gb-post">
-              <div class="gb-date">Posted: 01/01/2000</div>
-              cool site!!! love the glitter text
-              <div class="gb-sig">~*~ stay cool, stay 2000 ~*~</div>
-            </div>
+          <div class="im-actions">
+            <button type="submit">Send</button>
+            <span class="im-note">Right now messages only save in YOUR browser (GitHub Pages has no server). We'll make it shared later.</span>
           </div>
-        </div>
-
-        <p style="font-size:11px;color:#aa88dd;">
-          Heads up: right now entries only save in YOUR browser (GitHub Pages has no server).
-          We'll wire up a real shared guestbook once the design is done.
-        </p>
-      </div>
-
-      <!-- ===== LINKS ===== -->
-      <div class="box row-center" id="links">
-        <h2>~ Links &amp; Buttons ~</h2>
-        <!-- TODO: 88x31 buttons from friends / sites you like -->
-        <div class="ph btn88">88x31</div>
-        <div class="ph btn88">88x31</div>
-        <div class="ph btn88">88x31</div>
-        <div class="ph btn88">88x31</div>
-        <div class="ph btn88">88x31</div>
-        <div class="ph btn88">88x31</div>
-      </div>
+        </form>
+      </section>
 
     </div>
+
+    <!-- ============ SIDEBAR: TWEETS + COUNTER ============ -->
+    <div id="sidebar">
+      <div class="box">
+        <h2>Tubzbuster's Tweets</h2>
+        <div class="feed-body">
+          <a class="twitter-timeline" data-height="560" data-theme="light" data-chrome="noheader nofooter noscrollbar" href="https://twitter.com/Tubzbuster">Tweets by Tubzbuster</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+        <div class="feed-link"><a href="https://twitter.com/Tubzbuster">@Tubzbuster on Twitter</a></div>
+      </div>
+
+      <div class="box row-center">
+        <h2>Visitors</h2>
+        <div class="pad">
+          <div class="counter">000042</div>
+          <div style="font-size:11px;margin-top:4px;">(fake counter for now)</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <hr class="rainbow">
 
-  <!-- bottom banner -->
-  <a class="ad wide ad-smiley" href="#" aria-label="Fake ad: free smileys">
-    <span class="face">&#128515;</span>
-    <span class="big">FREE SMILEYS!!!</span>
-    <span class="small">100% virus free*</span>
-    <span class="face">&#128526;</span>
-  </a>
-
   <footer>
-    Best viewed in Netscape Navigator at 800x600 &#9733; &copy; Anya's Website
+    Best viewed in Internet Explorer 7 at 1024x768 &#9733; &copy; Anya's Website
   </footer>
 </div>
 
+<!-- ============ MEDIA PLAYER POPUP (plays 1million.mp4 from the root folder) ============ -->
+<div id="wmpOverlay" class="wmp-overlay" hidden>
+  <div class="wmp" role="dialog" aria-modal="true" aria-labelledby="wmpTitle">
+    <div class="wmp-titlebar">
+      <span class="wmp-title" id="wmpTitle">Media Player</span>
+      <span class="wmp-winbtns">
+        <i aria-hidden="true">_</i><i aria-hidden="true">&#9633;</i>
+        <button type="button" class="wmp-close" id="wmpClose" aria-label="Close player">x</button>
+      </span>
+    </div>
+    <div class="wmp-tabs" aria-hidden="true">
+      <span class="on">Now Playing</span><span>Library</span><span>Rip</span><span>Burn</span><span>Sync</span>
+    </div>
+    <div class="wmp-screen">
+      <video id="wmpVideo" src="1million.mp4" preload="none" playsinline></video>
+      <div class="wmp-error" id="wmpError" hidden>Couldn't load 1million.mp4. Check that it's in the same folder as index.html.</div>
+    </div>
+    <div class="wmp-controls">
+      <input class="wmp-seek" id="wmpSeek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Seek">
+      <div class="wmp-row">
+        <button type="button" class="wmp-btn wmp-play" id="wmpPlay" aria-label="Play">
+          <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <button type="button" class="wmp-btn" id="wmpStop" aria-label="Stop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+        </button>
+        <span class="wmp-time" id="wmpTime">0:00 / 0:00</span>
+        <span class="wmp-spacer"></span>
+        <button type="button" class="wmp-btn" id="wmpMute" aria-label="Mute">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9z"/>
+            <path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7l-1.2-1.2a3.3 3.3 0 0 0 0-4.6z"/>
+            <path class="slash" d="M17 7l-1.4 1.4L18.2 11l-2.6 2.6L17 15l2.6-2.6L22.2 15l1.4-1.4-2.6-2.6 2.6-2.6L22.2 7 19.6 9.6z"/>
+          </svg>
+        </button>
+        <input class="wmp-vol" id="wmpVol" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="site.js"></script>
+<script>
+  // 1 million visitor popup: dims the page and plays 1million.mp4
+  (function () {
+    var ad = document.getElementById("prizeAd");
+    var overlay = document.getElementById("wmpOverlay");
+    var video = document.getElementById("wmpVideo");
+    var playBtn = document.getElementById("wmpPlay");
+    var stopBtn = document.getElementById("wmpStop");
+    var seek = document.getElementById("wmpSeek");
+    var timeEl = document.getElementById("wmpTime");
+    var muteBtn = document.getElementById("wmpMute");
+    var vol = document.getElementById("wmpVol");
+    var closeBtn = document.getElementById("wmpClose");
+    var errorEl = document.getElementById("wmpError");
+
+    function fmt(t) {
+      if (!isFinite(t)) return "0:00";
+      var m = Math.floor(t / 60), s = Math.floor(t % 60);
+      return m + ":" + (s < 10 ? "0" : "") + s;
+    }
+    function updateTime() {
+      seek.max = isFinite(video.duration) ? video.duration : 100;
+      seek.value = video.currentTime;
+      timeEl.textContent = fmt(video.currentTime) + " / " + fmt(video.duration);
+    }
+    function syncPlay() {
+      var playing = !video.paused;
+      playBtn.classList.toggle("playing", playing);
+      playBtn.setAttribute("aria-label", playing ? "Pause" : "Play");
+    }
+    function showError() { errorEl.hidden = false; }
+
+    function open(ev) {
+      ev.preventDefault();
+      errorEl.hidden = true;
+      window.dispatchEvent(new Event("anya:pause-music")); // pause the background music
+      overlay.hidden = false;
+      document.body.classList.add("wmp-open");
+      closeBtn.focus();
+      var p = video.play();
+      if (p && p.catch) p.catch(function (e) { if (e && e.name !== "AbortError") showError(); });
+    }
+    function close() {
+      video.pause();
+      video.currentTime = 0;
+      overlay.hidden = true;
+      document.body.classList.remove("wmp-open");
+      updateTime();
+      syncPlay();
+      ad.focus();
+    }
+
+    ad.addEventListener("click", open);
+    ad.addEventListener("keydown", function (e) { if (e.key === " ") open(e); });
+    closeBtn.addEventListener("click", close);
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
+
+    document.addEventListener("keydown", function (e) {
+      if (overlay.hidden) return;
+      if (e.key === "Escape") { close(); return; }
+      if (e.key === "Tab") { // keep keyboard focus inside the popup
+        var f = overlay.querySelectorAll("button, input");
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    function toggle() { if (video.paused) { video.play().catch(showError); } else { video.pause(); } }
+    playBtn.addEventListener("click", toggle);
+    video.addEventListener("click", toggle);
+    stopBtn.addEventListener("click", function () { video.pause(); video.currentTime = 0; updateTime(); });
+
+    seek.addEventListener("input", function () { video.currentTime = parseFloat(seek.value); });
+    vol.addEventListener("input", function () { video.volume = parseFloat(vol.value); video.muted = false; });
+    muteBtn.addEventListener("click", function () { video.muted = !video.muted; });
+    video.addEventListener("volumechange", function () {
+      muteBtn.classList.toggle("muted", video.muted || video.volume === 0);
+      muteBtn.setAttribute("aria-label", video.muted ? "Unmute" : "Mute");
+    });
+
+    video.addEventListener("play", syncPlay);
+    video.addEventListener("pause", syncPlay);
+    video.addEventListener("ended", syncPlay);
+    video.addEventListener("timeupdate", updateTime);
+    video.addEventListener("loadedmetadata", updateTime);
+    video.addEventListener("error", showError);
+  })();
+</script>
 <script>
   // Demo guestbook: saves to this browser only (localStorage).
   (function () {
     var KEY = "anya-guestbook";
-    var list = document.getElementById("gbEntries");
+    var log = document.getElementById("imLog");
     var form = document.getElementById("gbForm");
 
     function esc(s) {
@@ -444,19 +414,20 @@
     function load() {
       try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
     }
-    function render(entry, n) {
+    function render(entry) {
       var div = document.createElement("div");
-      div.className = "gb-entry";
+      div.className = "im-msg";
       div.innerHTML =
-        '<div class="gb-user"><b>' + esc(entry.name) + '</b><br>Guest<br>Posts: ' + n + '</div>' +
-        '<div class="gb-post"><div class="gb-date">Posted: ' + esc(entry.date) + '</div>' +
+        '<span class="im-name">' + esc(entry.name) + '</span> ' +
+        '<span class="im-time">(' + esc(entry.time || entry.date || "") + ')</span>: ' +
         esc(entry.msg).replace(/\n/g, "<br>") +
-        (entry.sig ? '<div class="gb-sig">' + esc(entry.sig) + '</div>' : '') + '</div>';
-      list.insertBefore(div, list.firstChild);
+        (entry.sig ? '<div class="im-sig">' + esc(entry.sig) + '</div>' : '');
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
     }
 
     var saved = load();
-    saved.forEach(function (e, i) { render(e, i + 1); });
+    saved.forEach(render);
 
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
@@ -464,12 +435,12 @@
         name: document.getElementById("gbName").value.trim(),
         msg: document.getElementById("gbMsg").value.trim(),
         sig: document.getElementById("gbSig").value.trim(),
-        date: new Date().toLocaleDateString()
+        time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
       };
       if (!entry.name || !entry.msg) return;
       saved.push(entry);
       try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
-      render(entry, saved.length);
+      render(entry);
       form.reset();
     });
   })();

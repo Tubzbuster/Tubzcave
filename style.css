@@ -18,9 +18,8 @@ body {
   min-height: 100vh;
   color: var(--ink);
   font: 14px/1.45 Verdana, Tahoma, Geneva, sans-serif;
-  background: #050b12;
 }
-html { background: #050b12; }
+html { background: #050b12; } /* body stays transparent so the background layer behind it shows */
 body::before {
   content: "";
   position: fixed;
@@ -196,26 +195,20 @@ svg.fb-icon { display: block; image-rendering: pixelated; }
   box-shadow: 0 -1px 0 #0c2f86;
 }
 .xp-start {
-  display: flex; align-items: center; gap: 5px;
-  margin: 0; padding: 0 20px 0 9px;
-  color: #fff; font: italic bold 19px "Trebuchet MS", Tahoma, sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  height: 100%; margin: 0; padding: 0 22px 0 12px;
+  color: #fff; font: italic bold 19px/1 "Trebuchet MS", Tahoma, sans-serif;
   text-shadow: 1px 1px 2px #1b4d1b;
   background: linear-gradient(180deg, #6fc46f 0%, #3c9c3c 12%, #3c9c3c 78%, #2a7a2a 100%);
   border: 0; border-radius: 0 14px 14px 0;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 0 rgba(0,0,0,.25), 2px 0 3px rgba(0,0,0,.4);
   cursor: pointer;
 }
-.xp-start svg { width: 20px; height: 20px; }
+.xp-start svg { display: block; width: 20px; height: 20px; flex-shrink: 0; image-rendering: pixelated; }
+.xp-start span { display: block; line-height: 1; padding-bottom: 2px; }
+.xp-start.on { filter: brightness(.85); box-shadow: inset 0 2px 4px rgba(0,0,0,.45); }
 .xp-start:hover { filter: brightness(1.12); }
 .xp-start:active { filter: brightness(.82); box-shadow: inset 0 2px 4px rgba(0,0,0,.45); }
-.xp-quick { display: flex; align-items: center; gap: 4px; padding: 0 8px; }
-.xp-quick button {
-  width: 22px; height: 22px; padding: 0; cursor: pointer;
-  background: linear-gradient(180deg, #78a8f0, #3a6fd6);
-  border: 1px solid #1c46a8; border-radius: 3px;
-}
-.xp-quick button:hover { filter: brightness(1.2); }
-.xp-quick button:active { filter: brightness(.8); box-shadow: inset 0 1px 3px rgba(0,0,0,.5); }
 .xp-tray {
   display: flex; align-items: center; gap: 8px; margin-left: auto; padding: 0 12px;
   color: #fff; font: 11px Tahoma, Verdana, sans-serif;
@@ -223,13 +216,84 @@ svg.fb-icon { display: block; image-rendering: pixelated; }
   border-left: 1px solid #0a4aa8;
   box-shadow: inset 1px 0 0 rgba(255,255,255,.3);
 }
-.xp-tray button {
-  width: 16px; height: 16px; padding: 0; cursor: pointer;
-  background: linear-gradient(180deg, #d8ecff, #7fb6f0);
-  border: 1px solid #0a4aa8; border-radius: 3px;
+
+/* ============ START MENU (Windows 7 look: glass frame, white programs list, dark links column) ============ */
+.sm {
+  position: absolute; left: 3px; bottom: 36px; z-index: 40;
+  display: grid; grid-template-columns: minmax(0, 1fr) 168px; gap: 4px;
+  width: min(430px, calc(100% - 6px)); max-height: calc(100% - 42px); overflow: auto;
+  padding: 4px;
+  font: 12px "Segoe UI", Tahoma, Verdana, sans-serif;
+  background: linear-gradient(180deg, rgba(150,190,232,.97) 0%, rgba(74,116,164,.97) 18%, rgba(34,62,100,.98) 60%, rgba(22,44,76,.98) 100%);
+  border: 1px solid rgba(255,255,255,.65); border-radius: 7px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.7), inset 0 0 0 1px rgba(0,0,0,.45);
 }
-.xp-tray button:hover { filter: brightness(1.15); }
-.xp-tray button:active { filter: brightness(.8); }
+.sm[hidden] { display: none; }
+.sm-left {
+  display: flex; flex-direction: column; padding: 4px;
+  background: linear-gradient(180deg, #ffffff, #eef3f9); border: 1px solid #7e9abd; border-radius: 4px; color: #1d2c3c;
+}
+.sm-progs { flex: 1; }
+.sm-item {
+  display: flex; align-items: center; gap: 8px; width: 100%; margin: 0; padding: 5px 7px;
+  font: inherit; color: #1d2c3c; text-align: left; background: none;
+  border: 1px solid transparent; border-radius: 3px; cursor: pointer;
+}
+.sm-item svg { width: 28px; height: 28px; flex-shrink: 0; image-rendering: pixelated; }
+.sm-item svg[viewBox="0 0 16 16"] { width: 26px; height: 26px; }
+.sm-item:hover, .sm-item:focus-visible {
+  outline: none; background: linear-gradient(180deg, #f9fcff, #dcebfb 50%, #c4dcf5 51%, #d8e9fa); border-color: #8fb4de;
+}
+.sm-item:active { background: linear-gradient(180deg, #c4dcf5, #e4effb); box-shadow: inset 0 1px 3px rgba(0,40,100,.35); }
+.sm-sep { height: 1px; margin: 4px 6px; background: #c9d6e4; }
+.sm-all { font-weight: 600; padding-left: 12px; }
+.sm-all::before {
+  content: ""; width: 0; height: 0; margin-right: 4px;
+  border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid #2b5c96;
+}
+.sm-search {
+  display: flex; align-items: center; justify-content: space-between; margin: 4px 2px 2px; padding: 5px 8px;
+  color: #7b8a99; font-style: italic; background: #fff; border: 1px solid #8fa8c4; border-radius: 3px;
+  box-shadow: inset 0 1px 2px rgba(0,30,70,.2);
+}
+.sm-search i { width: 12px; height: 12px; border: 2px solid #4f7db0; border-radius: 50%; position: relative; }
+.sm-search i::after { content: ""; position: absolute; width: 2px; height: 6px; background: #4f7db0; right: -4px; bottom: -6px; transform: rotate(-45deg); }
+.sm-right { display: flex; flex-direction: column; padding: 2px 0; color: #fff; }
+.sm-user { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 2px 0 8px; }
+.sm-avatar {
+  width: 56px; height: 56px; padding: 2px; border: 2px solid rgba(255,255,255,.85); border-radius: 5px;
+  background: linear-gradient(180deg, #e9f4ff, #9cc4ec); box-shadow: 0 1px 4px rgba(0,0,0,.6);
+}
+.sm-avatar svg { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+.sm-name { font-size: 14px; text-shadow: 0 1px 2px #000; }
+.sm-link {
+  display: flex; align-items: center; gap: 8px; width: 100%; margin: 0; padding: 4px 8px;
+  font: inherit; color: #fff; text-align: left; text-decoration: none; text-shadow: 0 1px 1px rgba(0,0,0,.7);
+  background: none; border: 1px solid transparent; border-radius: 3px; cursor: pointer;
+}
+.sm-link:visited { color: #fff; }
+.sm-link svg { width: 20px; height: 20px; flex-shrink: 0; image-rendering: pixelated; }
+.sm-link:hover, .sm-link:focus-visible {
+  color: #fff; outline: none; background: linear-gradient(180deg, rgba(255,255,255,.4), rgba(170,210,255,.2) 50%, rgba(255,255,255,.1) 51%, rgba(170,210,255,.25));
+  border-color: rgba(255,255,255,.55);
+}
+.sm-link:active { background: rgba(0,0,0,.3); box-shadow: inset 0 1px 3px rgba(0,0,0,.5); }
+.sm-sep-r { background: rgba(255,255,255,.3); }
+.sm-shutrow { display: flex; margin: auto 4px 2px; }
+.sm-shut, .sm-shut-arrow {
+  margin: 0; color: #fff; font: 12px "Segoe UI", Tahoma, sans-serif; text-shadow: 0 1px 1px rgba(0,0,0,.7); cursor: pointer;
+  background: linear-gradient(180deg, #5a7aa0 0%, #2c4668 49%, #14263f 51%, #28405f 100%); border: 1px solid #0a1626;
+}
+.sm-shut { flex: 1; display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 3px 0 0 3px; }
+.sm-shut svg { width: 16px; height: 16px; image-rendering: pixelated; }
+.sm-shut-arrow { width: 22px; border-left: 0; border-radius: 0 3px 3px 0; position: relative; }
+.sm-shut-arrow::after { content: ""; position: absolute; left: 7px; top: 10px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #fff; }
+.sm-shut:hover, .sm-shut-arrow:hover { filter: brightness(1.25); }
+.sm-shut:active, .sm-shut-arrow:active { filter: brightness(.8); box-shadow: inset 0 1px 3px rgba(0,0,0,.6); }
+.sm button:focus-visible, .sm a:focus-visible { outline: 2px solid #ffbf00; outline-offset: -2px; }
+@media (max-width: 700px) {
+  .sm { grid-template-columns: 1fr; }
+}
 
 /* ============ PRIZE AD + CONSTRUCTION ============ */
 a.ad {
@@ -633,14 +697,14 @@ body.modal-open #wrapper, body.modal-open #wrapper * { animation-play-state: pau
 .gs-title, .gs-menu, .gs-tabs, .gs-head, .gs-status, .gs-table, .gs-table *,
 .ns-title, .ns-nav, .ns-side, .ns-hero, .ns-meta, .ns-desc,
 .wmp-titlebar, .wmp-tabs, .wmp-controls, .wmp-time,
-.construction, .construction *, button, button * {
+.sm, .sm *, .construction, .construction *, button, button * {
   -webkit-user-select: none;
   user-select: none;
   caret-color: transparent;
   cursor: default;
 }
 /* clickable things get the hand pointer (and so do their insides, so no I-beam appears over their text) */
-button, button *, a, a *, [role="button"], [role="button"] *, summary,
+button, button *, a, a *, [role="button"], [role="button"] *, summary, .sm-item, .sm-item *, .sm-link, .sm-link *,
 .xp-icon, .xp-icon *, .xp-start, .xp-start *, .tb-link, .tb-link * {
   cursor: pointer;
 }

@@ -580,6 +580,7 @@ a.gs-row:active { background: #d4bcef; }
   font: 13px Verdana, Tahoma, sans-serif; color: #9db1c2; text-align: left; background: none; border: 0;
 }
 .ns-item svg { width: 24px; height: 24px; flex-shrink: 0; }
+.ns-item .ns-ico { width: 24px; height: 24px; flex-shrink: 0; object-fit: cover; }
 .ns-item:hover { background: #1f2c3a; color: #fff; }
 .ns-item:active { background: #101820; }
 .ns-item.on { background: #2b4057; color: #fff; }
@@ -589,6 +590,7 @@ a.gs-row:active { background: #d4bcef; }
   background: linear-gradient(180deg, rgba(27,37,48,0) 35%, #1b2530), radial-gradient(circle at 75% 25%, #4f7a9c, #27394b 70%);
 }
 .ns-hero svg { width: 96px; height: 96px; flex-shrink: 0; filter: drop-shadow(2px 4px 0 rgba(0,0,0,.4)); }
+.ns-hero .ns-ico { width: 96px; height: 96px; flex-shrink: 0; object-fit: cover; border: 2px solid rgba(255,255,255,.25); border-radius: 4px; }
 .ns-big { font-size: 26px; font-weight: bold; color: #fff; line-height: 1.15; }
 .ns-sub { color: #9db1c2; font-size: 13px; }
 .ns-meta { display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: #202c38; }

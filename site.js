@@ -1,4 +1,42 @@
-// Shared on every page: floating music button (plays music.mp3 from the same folder as the HTML files)
+// Shared on every page.
+
+// ---------- 1. Image path fallbacks ----------
+// <img class="fb" data-srcs="images/a.gif|a.gif" data-icon="px-film" data-missing="text"> tries each path in order.
+// If none load: shows the pixel icon named in data-icon, or a dashed box with data-missing text.
+(function () {
+  var imgs = document.querySelectorAll("img.fb");
+  Array.prototype.forEach.call(imgs, function (img) {
+    var list = (img.getAttribute("data-srcs") || "").split("|").filter(Boolean);
+    var i = 0;
+    function giveUp() {
+      img.removeEventListener("error", next);
+      var icon = img.getAttribute("data-icon");
+      var repl;
+      if (icon) {
+        repl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        repl.setAttribute("viewBox", "0 0 24 24");
+        repl.setAttribute("class", (img.className.replace("fb", "") + " fb-icon").trim());
+        repl.setAttribute("aria-hidden", "true");
+        var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#" + icon);
+        use.setAttribute("href", "#" + icon);
+        repl.appendChild(use);
+      } else {
+        repl = document.createElement("div");
+        repl.className = "fb-missing";
+        repl.textContent = img.getAttribute("data-missing") || "image not found";
+      }
+      img.parentNode.replaceChild(repl, img);
+    }
+    function next() {
+      if (i < list.length) { img.src = list[i++]; } else { giveUp(); }
+    }
+    img.addEventListener("error", next);
+    next();
+  });
+})();
+
+// ---------- 2. Floating music button (plays music.mp3 from the same folder as the pages) ----------
 (function () {
   var btn = document.getElementById("musicBtn");
   if (!btn) return;

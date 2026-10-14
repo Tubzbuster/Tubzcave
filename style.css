@@ -18,7 +18,17 @@ body {
   min-height: 100vh;
   color: var(--ink);
   font: 14px/1.45 Verdana, Tahoma, Geneva, sans-serif;
-  background: #050b12 url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1600 900%22 preserveAspectRatio=%22xMidYMid slice%22%3E%3Cdefs%3E%3ClinearGradient id=%22base%22 x1=%220%22 y1=%220%22 x2=%220%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23000000%22/%3E%3Cstop offset=%22.38%22 stop-color=%22%23050f18%22/%3E%3Cstop offset=%22.72%22 stop-color=%22%230d2c46%22/%3E%3Cstop offset=%221%22 stop-color=%22%232f74b0%22/%3E%3C/linearGradient%3E%3CradialGradient id=%22glow%22 cx=%22.5%22 cy=%221.05%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%234fa3ec%22 stop-opacity=%22.6%22/%3E%3Cstop offset=%221%22 stop-color=%22%234fa3ec%22 stop-opacity=%220%22/%3E%3C/radialGradient%3E%3CradialGradient id=%22glow2%22 cx=%22.12%22 cy=%22.18%22 r=%22.45%22%3E%3Cstop offset=%220%22 stop-color=%22%231c4a73%22 stop-opacity=%22.45%22/%3E%3Cstop offset=%221%22 stop-color=%22%231c4a73%22 stop-opacity=%220%22/%3E%3C/radialGradient%3E%3ClinearGradient id=%22sw1%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%220%22%3E%3Cstop offset=%220%22 stop-color=%22%23cfe6ff%22 stop-opacity=%220%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23eaf4ff%22 stop-opacity=%22.75%22/%3E%3Cstop offset=%22.75%22 stop-color=%22%238fc2f5%22 stop-opacity=%22.4%22/%3E%3Cstop offset=%221%22 stop-color=%22%238fc2f5%22 stop-opacity=%220%22/%3E%3C/linearGradient%3E%3ClinearGradient id=%22sw2%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%220%22%3E%3Cstop offset=%220%22 stop-color=%22%239fcdf7%22 stop-opacity=%220%22/%3E%3Cstop offset=%22.5%22 stop-color=%22%23bfe0ff%22 stop-opacity=%22.5%22/%3E%3Cstop offset=%221%22 stop-color=%22%236fb0ee%22 stop-opacity=%220%22/%3E%3C/linearGradient%3E%3ClinearGradient id=%22gl%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%220%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3Cstop offset=%22.5%22 stop-color=%22%23fff%22 stop-opacity=%22.07%22/%3E%3Cstop offset=%221%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3C/linearGradient%3E%3Cfilter id=%22b1%22 x=%22-20%25%22 y=%22-50%25%22 width=%22140%25%22 height=%22200%25%22%3E%3CfeGaussianBlur stdDeviation=%2218%22/%3E%3C/filter%3E%3Cfilter id=%22b2%22 x=%22-20%25%22 y=%22-50%25%22 width=%22140%25%22 height=%22200%25%22%3E%3CfeGaussianBlur stdDeviation=%222.5%22/%3E%3C/filter%3E%3C/defs%3E%3Crect width=%221600%22 height=%22900%22 fill=%22url(%23base)%22/%3E%3Crect width=%221600%22 height=%22900%22 fill=%22url(%23glow2)%22/%3E%3Crect width=%221600%22 height=%22900%22 fill=%22url(%23glow)%22/%3E%3Cg filter=%22url(%23b1)%22 opacity=%22.7%22%3E%3Cpath d=%22M-100 60C450 190 1000 470 1700 730C1000 540 450 280 -100 130Z%22 fill=%22url(%23sw2)%22/%3E%3Cpath d=%22M1700 20C1250 190 800 430 300 920C860 560 1280 330 1700 120Z%22 fill=%22url(%23sw2)%22 opacity=%22.6%22/%3E%3C/g%3E%3Cg filter=%22url(%23b2)%22%3E%3Cpath d=%22M-100 80C450 200 1000 480 1700 722C1000 520 450 262 -100 112Z%22 fill=%22url(%23sw1)%22/%3E%3Cpath d=%22M-100 150C400 260 900 520 1700 800C940 590 420 330 -100 176Z%22 fill=%22url(%23sw2)%22 opacity=%22.8%22/%3E%3Cpath d=%22M1700 60C1260 210 820 440 340 900C880 570 1290 350 1700 140Z%22 fill=%22url(%23sw2)%22 opacity=%22.75%22/%3E%3C/g%3E%3Cg fill=%22url(%23gl)%22%3E%3Cpolygon points=%22860,0 1040,0 640,900 460,900%22/%3E%3Cpolygon points=%221200,0 1290,0 880,900 790,900%22 opacity=%22.7%22/%3E%3Cpolygon points=%22420,0 480,0 90,900 30,900%22 opacity=%22.6%22/%3E%3C/g%3E%3C/svg%3E") center / cover no-repeat fixed;
+  background: #050b12;
+}
+html { background: #050b12; }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1600 900%22 preserveAspectRatio=%22xMidYMid slice%22%3E%3Cdefs%3E%3ClinearGradient id=%22base%22 x1=%220%22 y1=%220%22 x2=%220%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23000000%22/%3E%3Cstop offset=%22.38%22 stop-color=%22%23050f18%22/%3E%3Cstop offset=%22.72%22 stop-color=%22%230d2c46%22/%3E%3Cstop offset=%221%22 stop-color=%22%232f74b0%22/%3E%3C/linearGradient%3E%3CradialGradient id=%22glow%22 cx=%22.5%22 cy=%221.05%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%234fa3ec%22 stop-opacity=%22.6%22/%3E%3Cstop offset=%221%22 stop-color=%22%234fa3ec%22 stop-opacity=%220%22/%3E%3C/radialGradient%3E%3CradialGradient id=%22glow2%22 cx=%22.12%22 cy=%22.18%22 r=%22.45%22%3E%3Cstop offset=%220%22 stop-color=%22%231c4a73%22 stop-opacity=%22.45%22/%3E%3Cstop offset=%221%22 stop-color=%22%231c4a73%22 stop-opacity=%220%22/%3E%3C/radialGradient%3E%3ClinearGradient id=%22sw1%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%220%22%3E%3Cstop offset=%220%22 stop-color=%22%23cfe6ff%22 stop-opacity=%220%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23eaf4ff%22 stop-opacity=%22.75%22/%3E%3Cstop offset=%22.75%22 stop-color=%22%238fc2f5%22 stop-opacity=%22.4%22/%3E%3Cstop offset=%221%22 stop-color=%22%238fc2f5%22 stop-opacity=%220%22/%3E%3C/linearGradient%3E%3ClinearGradient id=%22sw2%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%220%22%3E%3Cstop offset=%220%22 stop-color=%22%239fcdf7%22 stop-opacity=%220%22/%3E%3Cstop offset=%22.5%22 stop-color=%22%23bfe0ff%22 stop-opacity=%22.5%22/%3E%3Cstop offset=%221%22 stop-color=%22%236fb0ee%22 stop-opacity=%220%22/%3E%3C/linearGradient%3E%3ClinearGradient id=%22gl%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%220%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3Cstop offset=%22.5%22 stop-color=%22%23fff%22 stop-opacity=%22.07%22/%3E%3Cstop offset=%221%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3C/linearGradient%3E%3Cfilter id=%22b1%22 x=%22-20%25%22 y=%22-50%25%22 width=%22140%25%22 height=%22200%25%22%3E%3CfeGaussianBlur stdDeviation=%2218%22/%3E%3C/filter%3E%3Cfilter id=%22b2%22 x=%22-20%25%22 y=%22-50%25%22 width=%22140%25%22 height=%22200%25%22%3E%3CfeGaussianBlur stdDeviation=%222.5%22/%3E%3C/filter%3E%3C/defs%3E%3Crect width=%221600%22 height=%22900%22 fill=%22url(%23base)%22/%3E%3Crect width=%221600%22 height=%22900%22 fill=%22url(%23glow2)%22/%3E%3Crect width=%221600%22 height=%22900%22 fill=%22url(%23glow)%22/%3E%3Cg filter=%22url(%23b1)%22 opacity=%22.7%22%3E%3Cpath d=%22M-100 60C450 190 1000 470 1700 730C1000 540 450 280 -100 130Z%22 fill=%22url(%23sw2)%22/%3E%3Cpath d=%22M1700 20C1250 190 800 430 300 920C860 560 1280 330 1700 120Z%22 fill=%22url(%23sw2)%22 opacity=%22.6%22/%3E%3C/g%3E%3Cg filter=%22url(%23b2)%22%3E%3Cpath d=%22M-100 80C450 200 1000 480 1700 722C1000 520 450 262 -100 112Z%22 fill=%22url(%23sw1)%22/%3E%3Cpath d=%22M-100 150C400 260 900 520 1700 800C940 590 420 330 -100 176Z%22 fill=%22url(%23sw2)%22 opacity=%22.8%22/%3E%3Cpath d=%22M1700 60C1260 210 820 440 340 900C880 570 1290 350 1700 140Z%22 fill=%22url(%23sw2)%22 opacity=%22.75%22/%3E%3C/g%3E%3Cg fill=%22url(%23gl)%22%3E%3Cpolygon points=%22860,0 1040,0 640,900 460,900%22/%3E%3Cpolygon points=%221200,0 1290,0 880,900 790,900%22 opacity=%22.7%22/%3E%3Cpolygon points=%22420,0 480,0 90,900 30,900%22 opacity=%22.6%22/%3E%3C/g%3E%3C/svg%3E") center / cover no-repeat;
+  transform: translateZ(0);
+  pointer-events: none;
 }
 body.modal-open { overflow: hidden; }
 a { color: #8cc8ff; }
@@ -36,8 +46,6 @@ img { max-width: 100%; height: auto; }
     var(--glass);
   border: 1px solid rgba(170, 210, 255, .42);
   border-radius: 16px;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
   box-shadow: 0 10px 34px rgba(0, 10, 25, .65), inset 0 0 0 1px rgba(255,255,255,.12);
 }
 .hero {
@@ -65,6 +73,12 @@ h1.glitter {
   font-size: 3rem;
   line-height: 1.15;
   letter-spacing: 1px;
+  color: #021a40;
+  text-shadow: 0 2px 0 #021a40, 0 0 6px rgba(0, 30, 90, .8);
+}
+h1.glitter span {
+  position: absolute;
+  left: 0; right: 0; top: 0;
   background-image:
     radial-gradient(circle, #fff 0 1px, transparent 2px),
     linear-gradient(90deg, #ffffff, #b8e8ff, #ffd6f5, #ffffff, #b8e8ff);
@@ -73,8 +87,8 @@ h1.glitter {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: shimmer 2.5s linear infinite;
-  filter: drop-shadow(0 2px 0 #021a40) drop-shadow(0 0 6px rgba(0, 30, 90, .8));
+  text-shadow: none;
+  animation: shimmer 2s steps(10) infinite;
 }
 @keyframes shimmer {
   from { background-position: 0 0, 0 0; }
@@ -85,6 +99,7 @@ h1.glitter {
 .ticker {
   position: relative;
   overflow: hidden;
+  contain: paint;
   margin: 10px 0;
   background: #000;
   border: 1px solid #2b2b2b;
@@ -96,6 +111,7 @@ h1.glitter {
   white-space: nowrap;
   padding: 7px 0;
   font: bold 14px "Courier New", Courier, monospace;
+  will-change: transform;
   animation: tick 80s linear infinite;
 }
 .ticker:hover .ticker-track { animation-play-state: paused; }
@@ -233,7 +249,7 @@ a.ad {
 
 .construction svg { display: block; width: 100%; max-width: 260px; height: auto; margin: 0 auto; }
 .construction p { margin: 4px 0 0; font-size: 12px; color: var(--ink-dim); }
-.construction .swing { transform-origin: 84px 130px; animation: hammer 1.2s ease-in infinite; }
+.construction .swing { transform-origin: 84px 130px; animation: hammer 1.2s steps(6) infinite; }
 .construction .spark { opacity: 0; animation: sparkle 1.2s linear infinite; }
 .construction .lamp { animation: lampflash 1s steps(2, start) infinite; }
 @keyframes hammer {
@@ -312,8 +328,6 @@ hr.rainbow {
   display: flex; align-items: center; justify-content: center;
   padding: 12px;
   background: rgba(0, 8, 20, .74);
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
 }
 .modal-overlay[hidden], .wmp-overlay[hidden] { display: none; }
 
@@ -608,9 +622,39 @@ a.ns-dl:active { filter: brightness(.85); box-shadow: inset 0 2px 4px rgba(0,0,0
 .ns-desc { padding: 14px 20px; font-size: 13px; color: #9db1c2; }
 .ns-panel[hidden] { display: none; }
 
+/* ============ PERFORMANCE: pause animations that are scrolled out of view (see site.js) ============ */
+.anim-off, .anim-off * { animation-play-state: paused !important; }
+body.modal-open #wrapper, body.modal-open #wrapper * { animation-play-state: paused !important; }
+
+/* ============ NO TEXT CURSOR / SELECTION ON FAKE UI ============ */
+/* Everything that is decoration or a fake button: arrow pointer, no I-beam, no text selection, no caret. */
+.xp-desktop, .xp-desktop *, .xp-taskbar, #taskbar, #taskbar *, .hero, .ticker, .ticker *, .box > h2, .ad, .ad *,
+.im-titlebar, .im-menu, .im-toolbar, .im-side, .im-sys, .im-actions .im-note,
+.gs-title, .gs-menu, .gs-tabs, .gs-head, .gs-status, .gs-table, .gs-table *,
+.ns-title, .ns-nav, .ns-side, .ns-hero, .ns-meta, .ns-desc,
+.wmp-titlebar, .wmp-tabs, .wmp-controls, .wmp-time,
+.construction, .construction *, button, button * {
+  -webkit-user-select: none;
+  user-select: none;
+  caret-color: transparent;
+  cursor: default;
+}
+/* clickable things get the hand pointer (and so do their insides, so no I-beam appears over their text) */
+button, button *, a, a *, [role="button"], [role="button"] *, summary,
+.xp-icon, .xp-icon *, .xp-start, .xp-start *, .tb-link, .tb-link * {
+  cursor: pointer;
+}
+/* text boxes keep their normal typing cursor */
+input[type="text"], textarea { -webkit-user-select: text; user-select: text; cursor: text; caret-color: auto; }
+input[type="range"], input[type="range"] * { cursor: pointer; caret-color: transparent; }
+/* no dragging ghost images, no tap flash, no focus ring from mouse clicks */
+.xp-icon svg, .xp-icon img, .gs-ico, .tb-link svg, .cat-icon { -webkit-user-drag: none; user-drag: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus:not(:focus-visible) { outline: none; }
+
 /* ============ REDUCED MOTION + MOBILE ============ */
 @media (prefers-reduced-motion: reduce) {
-  h1.glitter, .ad-prize, .ad-prize .arrow { animation: none !important; }
+  h1.glitter span, .ad-prize, .ad-prize .arrow { animation: none !important; }
   #taskbar, .tb-label { transition: none; }
   .construction .swing { animation: none; transform: rotate(-30deg); }
   .construction .spark, .construction .lamp { animation: none; }

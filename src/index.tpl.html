@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tubzcave</title>
+<script>(function(){var d=document.documentElement,q=window.matchMedia("(max-width:700px),(hover:none) and (pointer:coarse) and (max-width:960px)");function f(){d.classList.toggle("m",q.matches)}f();if(q.addEventListener)q.addEventListener("change",f);else q.addListener(f)})();</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+{{SPRITE}}
+
+{{MUSIC_BTN}}
+
+{{TASKBAR}}
+
+<div class="stage">
+<aside class="side-l" aria-label="Profiles">
+{{PROFILES_L}}
+</aside>
+
+<div id="wrapper">
+
+  <!-- ============ HEADER ============ -->
+  <div class="hero" data-anim>
+    <h1 class="wordart">{{WORDART}}</h1>
+  </div>
+
+  <!-- ============ STOCK TICKER (prices frozen in 2001) ============ -->
+  {{TICKER}}
+
+  <!-- ============ DESKTOP (downloads) ============ -->
+  <div class="box" id="downloads">
+    <h2>My Desktop</h2>
+    <div class="pad">
+      <div class="xp-desktop" id="xpDesktop">
+        <canvas class="xp-wall xp-wall-art" id="xpWall" aria-hidden="true" hidden></canvas>
+        <!-- Wallpaper: put your picture at images/wallpaper.jpg (it is stretched to cover the whole desktop) -->
+        <img class="xp-wall xp-wall-img" id="xpWallImg" src="images/wallpaper.jpg" alt="" decoding="async">
+
+        <div class="xp-icons">
+          <button type="button" class="xp-icon" data-open="movieModal" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-cd"/></svg>
+            <span class="xp-label">Movies (D:)</span>
+          </button>
+          <button type="button" class="xp-icon" data-open="warezModal" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-warez"/></svg>
+            <span class="xp-label">WareZ</span>
+          </button>
+          <button type="button" class="xp-icon" data-open="aimModal" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-aim"/></svg>
+            <span class="xp-label">Guestbook</span>
+          </button>
+        </div>
+
+        <button type="button" class="xp-icon xp-bin">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-bin"/></svg>
+          <span class="xp-label">Recycle Bin</span>
+        </button>
+
+        <!-- Start menu (opens from the Start button) -->
+        <div class="sm" id="startMenu" role="menu" aria-label="Start menu" hidden>
+          <div class="sm-left">
+            <div class="sm-progs">
+              <button type="button" class="sm-item" role="menuitem" data-open="movieModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-cd"/></svg><span>Movies (D:)</span></button>
+              <button type="button" class="sm-item" role="menuitem" data-open="warezModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-warez"/></svg><span>WareZ</span></button>
+              <button type="button" class="sm-item" role="menuitem" data-open="aimModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-aim"/></svg><span>Guestbook</span></button>
+              <button type="button" class="sm-item" role="menuitem" data-open="wmpOverlay"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-film"/></svg><span>Media Player</span></button>
+              <button type="button" class="sm-item" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-pic"/></svg><span>Paint</span></button>
+              <button type="button" class="sm-item" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-music"/></svg><span>Sound Recorder</span></button>
+            </div>
+            <div class="sm-sep"></div>
+            <button type="button" class="sm-item sm-all" role="menuitem"><span>All Programs</span></button>
+            <div class="sm-search" aria-hidden="true"><span>Search programs and files</span><i></i></div>
+          </div>
+          <div class="sm-right">
+            <div class="sm-user">
+              <div class="sm-avatar"><svg viewBox="0 0 18 18" aria-hidden="true"><use href="#px-cat"/></svg></div>
+              <div class="sm-name">Anya</div>
+            </div>
+            <a class="sm-link" role="menuitem" href="index.html"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-folder"/></svg>Home</a>
+            <a class="sm-link" role="menuitem" href="about.html"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-help"/></svg>About</a>
+            <a class="sm-link" role="menuitem" href="mimi.html"><svg viewBox="0 0 18 18" aria-hidden="true"><use href="#px-cat"/></svg>Mimi</a>
+            <div class="sm-sep sm-sep-r"></div>
+            <button type="button" class="sm-link" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-folder"/></svg>Documents</button>
+            <button type="button" class="sm-link" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-pic"/></svg>Pictures</button>
+            <button type="button" class="sm-link" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-music"/></svg>Music</button>
+            <button type="button" class="sm-link" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-pc"/></svg>Computer</button>
+            <button type="button" class="sm-link" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-gear"/></svg>Control Panel</button>
+            <div class="sm-shutrow">
+              <button type="button" class="sm-shut" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-power"/></svg>Shut down</button>
+              <button type="button" class="sm-shut-arrow" aria-label="Shut down options"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="xp-taskbar">
+          <button type="button" class="xp-start" id="startBtn" aria-haspopup="menu" aria-expanded="false" aria-controls="startMenu"><img class="start-orb" src="data:image/png;base64,{{ORB}}" alt="" width="24" height="24"><span>start</span></button>
+          <button type="button" class="xp-fox" title="Foxfire Browser" aria-label="Foxfire Browser"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-fox"/></svg><span>Foxfire</span></button>
+          <div class="xp-tray">
+            <button type="button" class="xp-vol" aria-label="Volume"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-vol"/></svg></button>
+            <span id="xpClock">12:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- fake ad banner: opens the video player -->
+  <a class="ad ad-prize" data-anim id="prizeAd" href="#" role="button" data-open="wmpOverlay" aria-haspopup="dialog" aria-label="Fake ad: you are the 1,000,000th visitor. Opens a video player.">
+    <span class="arrow">&#9654;</span>
+    <span><span class="big">YOU ARE VISITOR #1,000,000!!</span><br><span class="small">Click here to claim your FREE prize!</span></span>
+    <span class="arrow">&#9664;</span>
+  </a>
+
+  <!-- under construction (moved down the page) -->
+  <div class="box row-center">
+    <h2>Site Status</h2>
+    <div class="pad">
+      {{CONSTRUCTION}}
+    </div>
+  </div>
+
+  <hr class="rainbow">
+
+  <footer>
+    Best viewed in Internet Explorer 7 at 1024x768 &#9733; &copy; Tubzcave
+  </footer>
+</div>
+
+<aside class="side-r" aria-label="Profile">
+{{PROFILES_R}}
+</aside>
+</div>
+
+<!-- =====================================================================
+     MODAL: MOVIES  (GrapeShare, a purple download-manager look)
+     To add a movie: copy one <a class="gs-row"> block, then change the
+     href (your free link), the title, and the gif name in data-srcs.
+     ===================================================================== -->
+<div class="modal-overlay" id="movieModal" hidden>
+  <div class="gs" role="dialog" aria-modal="true" aria-labelledby="gsTitle">
+    <div class="gs-title">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#grape"/></svg>
+      <span class="gs-name" id="gsTitle">GrapeShare - Movies (D:)</span>
+      <span class="gs-winbtns">
+        <button type="button" aria-label="Minimize">_</button>
+        <button type="button" aria-label="Maximize">&#9633;</button>
+        <button type="button" class="gs-x" data-close aria-label="Close">x</button>
+      </span>
+    </div>
+    <div class="gs-menu">
+      <button type="button">File</button><button type="button">View</button><button type="button">Tools</button><button type="button">Help</button>
+    </div>
+    <div class="gs-tabs">
+      <button type="button" class="gs-tab on">Search</button>
+      <button type="button" class="gs-tab">Monitor</button>
+      <button type="button" class="gs-tab">Library</button>
+    </div>
+    <div class="gs-search">
+      <input type="text" aria-label="Search" value="movies">
+      <button type="button" class="gs-btn">Search</button>
+    </div>
+    <div class="gs-table">
+      <div class="gs-head"><span>Name</span><span>Type</span><span>Quality</span><span>Status</span></div>
+
+      <!-- MOVIE 1 -->
+      <a class="gs-row" href="https://mega.nz/file/ZNIzyY7T#bZ3iql3MVi0GVfxAvfA3IdEjGL1MdJ5I-tzpHgXL3LA" target="_blank" rel="noopener noreferrer">
+        <span class="gs-cell">
+          <img class="fb gs-ico" data-srcs="images/hellraiser.gif|images/movies/hellraiser.gif|hellraiser.gif" data-icon="px-film" alt="">
+          <span><b>Hellraiser</b><small>Click to open the link</small></span>
+        </span>
+        <span class="gs-c">Movie</span><span class="gs-c">DVD</span>
+        <span class="gs-bar"><i></i><em>Ready</em></span>
+      </a>
+
+      <!-- MOVIE 2 -->
+      <a class="gs-row" href="https://example.com/" target="_blank" rel="noopener noreferrer">
+        <span class="gs-cell">
+          <img class="fb gs-ico" data-srcs="images/movie2.gif|images/movies/movie2.gif|movie2.gif" data-icon="px-film" alt="">
+          <span><b>Movie Two</b><small>Click to open the link</small></span>
+        </span>
+        <span class="gs-c">Movie</span><span class="gs-c">DVD</span>
+        <span class="gs-bar"><i></i><em>Ready</em></span>
+      </a>
+
+      <!-- MOVIE 3 -->
+      <a class="gs-row" href="https://example.com/" target="_blank" rel="noopener noreferrer">
+        <span class="gs-cell">
+          <img class="fb gs-ico" data-srcs="images/movie3.gif|images/movies/movie3.gif|movie3.gif" data-icon="px-film" alt="">
+          <span><b>Movie Three</b><small>Click to open the link</small></span>
+        </span>
+        <span class="gs-c">Movie</span><span class="gs-c">DVD</span>
+        <span class="gs-bar"><i></i><em>Ready</em></span>
+      </a>
+    </div>
+    <div class="gs-status"><span>Connected to 1 host</span><span>3 results</span></div>
+  </div>
+</div>
+
+<!-- =====================================================================
+     MODAL: WAREZ  (fake "not-steam" game library)
+     ===================================================================== -->
+<div class="modal-overlay" id="warezModal" hidden>
+  <div class="ns" role="dialog" aria-modal="true" aria-labelledby="nsTitle">
+    <div class="ns-title">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-warez"/></svg>
+      <span class="ns-name" id="nsTitle">NotSteam</span>
+      <span class="ns-winbtns">
+        <button type="button" aria-label="Minimize">_</button>
+        <button type="button" aria-label="Maximize">&#9633;</button>
+        <button type="button" class="ns-x" data-close aria-label="Close">x</button>
+      </span>
+    </div>
+    <div class="ns-nav">
+      <button type="button">STORE</button>
+      <button type="button" class="on">LIBRARY</button>
+      <button type="button">COMMUNITY</button>
+      <button type="button">ANYA</button>
+    </div>
+    <div class="ns-body">
+      <div class="ns-side">
+        <h3>ALL (3)</h3>
+        <button type="button" class="ns-item on" data-panel="nsPanel1"><img class="fb ns-ico" data-srcs="images/winrar.gif|images/warez/winrar.gif|winrar.gif" data-icon="px-key" alt="">WinRAR Registration Key</button>
+        <button type="button" class="ns-item" data-panel="nsPanel2"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-warez"/></svg>Ware Two</button>
+        <button type="button" class="ns-item" data-panel="nsPanel3"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-warez"/></svg>Ware Three</button>
+      </div>
+      <div class="ns-main">
+
+        <!-- WARE 1: WinRAR Registration Key (file lives at files/rarreg.key) -->
+        <section class="ns-panel" id="nsPanel1">
+          <div class="ns-hero">
+            <img class="fb ns-ico" data-srcs="images/winrar.gif|images/warez/winrar.gif|winrar.gif" data-icon="px-key" alt="">
+            <div><div class="ns-big">WinRAR Registration Key</div><div class="ns-sub">rarreg.key</div></div>
+          </div>
+          <div class="ns-meta">
+            <a class="ns-dl" href="files/rarreg.key" download="rarreg.key" data-paths="files/rarreg.key|files/warez/rarreg.key|rarreg.key">DOWNLOAD</a>
+            <div class="ns-stat">STATUS<b>Ready to download</b></div>
+            <div class="ns-stat">FILE<b>rarreg.key</b></div>
+          </div>
+          <div class="ns-desc">Click DOWNLOAD and the file saves to your computer.</div>
+        </section>
+
+        <!-- WARE 2 (placeholder; copy the block above and set the link when ready) -->
+        <section class="ns-panel" id="nsPanel2" hidden>
+          <div class="ns-hero">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-warez"/></svg>
+            <div><div class="ns-big">Ware Two</div><div class="ns-sub">coming soon</div></div>
+          </div>
+          <div class="ns-meta"><span class="ns-dl disabled">COMING SOON</span></div>
+          <div class="ns-desc">Nothing here yet.</div>
+        </section>
+
+        <!-- WARE 3 (placeholder) -->
+        <section class="ns-panel" id="nsPanel3" hidden>
+          <div class="ns-hero">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-warez"/></svg>
+            <div><div class="ns-big">Ware Three</div><div class="ns-sub">coming soon</div></div>
+          </div>
+          <div class="ns-meta"><span class="ns-dl disabled">COMING SOON</span></div>
+          <div class="ns-desc">Nothing here yet.</div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================================
+     MODAL: GUESTBOOK  (instant-message style)
+     ===================================================================== -->
+<div class="modal-overlay" id="aimModal" hidden>
+  <section class="im-modal" role="dialog" aria-modal="true" aria-labelledby="imTitle">
+    <div class="im-titlebar">
+      <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#px-cat"/></svg>
+      <span class="im-title" id="imTitle">Sign My Guestbook! - Instant Message with Anya</span>
+      <span class="im-winbtns">
+        <button type="button" aria-label="Minimize">_</button>
+        <button type="button" aria-label="Maximize">&#9633;</button>
+        <button type="button" class="im-x" data-close aria-label="Close">x</button>
+      </span>
+    </div>
+    <div class="im-menu">
+      <button type="button">File</button><button type="button">Edit</button><button type="button">Insert</button><button type="button">People</button>
+    </div>
+
+    <div class="im-main">
+      <div class="im-log" id="imLog" role="log" aria-live="polite">
+        <div class="im-sys"><b>Anya</b> has signed on. Leave a message below!</div>
+      </div>
+      <div class="im-side" aria-hidden="true">
+        <div class="im-buddy"><svg viewBox="0 0 18 18" aria-hidden="true"><use href="#px-cat"/></svg></div>
+        Anya
+      </div>
+    </div>
+
+    <form class="im-form" id="gbForm">
+      <div class="im-toolbar">
+        <button type="button" class="im-tool" aria-label="Font size">A</button>
+        <button type="button" class="im-tool" aria-label="Larger font" style="font-size:15px;">A</button>
+        <button type="button" class="im-tool" aria-label="Bold">B</button>
+        <button type="button" class="im-tool" aria-label="Italic"><i>I</i></button>
+        <button type="button" class="im-tool" aria-label="Underline"><u>U</u></button>
+        <button type="button" class="im-tool" aria-label="Smiley">&#9786;</button>
+      </div>
+
+      <label for="gbName">Name:</label>
+      <input type="text" id="gbName" maxlength="30" placeholder="Anonymous" autocomplete="off">
+
+      <label for="gbMsg">Message:</label>
+      <textarea id="gbMsg" rows="3" maxlength="500" required></textarea>
+
+      <label for="gbSig">Forum signature (optional):</label>
+      <textarea id="gbSig" rows="2" maxlength="200" placeholder="~*~ your cool signature here ~*~"></textarea>
+
+      <!-- honeypot: real people never see or fill this; bots do -->
+      <input type="text" id="gbHp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+
+      <div class="im-actions">
+        <button type="submit" class="im-send">Send</button>
+        <span class="im-note" id="gbNote" role="status"></span>
+      </div>
+    </form>
+  </section>
+</div>
+
+<!-- =====================================================================
+     MODAL: VIDEO PLAYER  (plays 1million.mp4 from the root folder)
+     ===================================================================== -->
+<div class="wmp-overlay" id="wmpOverlay" hidden>
+  <div class="wmp" role="dialog" aria-modal="true" aria-labelledby="wmpTitle">
+    <div class="wmp-titlebar">
+      <span class="wmp-title" id="wmpTitle">Media Player</span>
+      <span class="wmp-winbtns">
+        <button type="button" aria-label="Minimize">_</button>
+        <button type="button" aria-label="Maximize">&#9633;</button>
+        <button type="button" class="wmp-close" data-close aria-label="Close player">x</button>
+      </span>
+    </div>
+    <div class="wmp-tabs">
+      <button type="button" class="on">Now Playing</button><button type="button">Library</button><button type="button">Rip</button><button type="button">Burn</button><button type="button">Sync</button>
+    </div>
+    <div class="wmp-screen">
+      <video id="wmpVideo" src="1million.mp4" preload="none" playsinline></video>
+      <div class="wmp-error" id="wmpError" hidden>Couldn't load 1million.mp4. Check that it's in the same folder as index.html.</div>
+    </div>
+    <div class="wmp-controls">
+      <input class="wmp-seek" id="wmpSeek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Seek">
+      <div class="wmp-row">
+        <button type="button" class="wmp-btn wmp-play" id="wmpPlay" aria-label="Play">
+          <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <button type="button" class="wmp-btn" id="wmpStop" aria-label="Stop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+        </button>
+        <span class="wmp-time" id="wmpTime">0:00 / 0:00</span>
+        <span class="wmp-spacer"></span>
+        <button type="button" class="wmp-btn" id="wmpMute" aria-label="Mute">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9z"/>
+            <path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7l-1.2-1.2a3.3 3.3 0 0 0 0-4.6z"/>
+            <path class="slash" d="M17 7l-1.4 1.4L18.2 11l-2.6 2.6L17 15l2.6-2.6L22.2 15l1.4-1.4-2.6-2.6 2.6-2.6L22.2 7 19.6 9.6z"/>
+          </svg>
+        </button>
+        <input class="wmp-vol" id="wmpVol" type="range" min="0" max="1" step="0.05" value="0.5" aria-label="Volume">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="site.js"></script>
+<script>
+(function () {
+  // lets site.js shut this page's listeners down when you navigate away without a reload
+  var ctl = new AbortController(); window.pageAbort = ctl;
+  var signal = ctl.signal;
+
+  // ---------- desktop wallpaper: images/wallpaper.jpg, with a drawn pixel-art picture only if that file is missing ----------
+  var wall = document.getElementById("xpWall");
+  var wallImg = document.getElementById("xpWallImg");
+  function drawArt() {
+  if (wall && wall.getContext) {
+    var W = wall.width = 240, H = wall.height = 110, ctx = wall.getContext("2d");
+    var bayer = [0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
+    var sky = ["#1f56c8","#2f6fdc","#4a88ea","#6aa2f2","#8dbbf6","#b3d2fa","#d6e7fc"];
+    var grass = ["#245f16","#2f7a1d","#3d9a26","#58b52f","#7cc944","#9fdc5c"];
+    var clouds = [[40,20,24,6],[74,27,16,5],[150,15,28,6],[190,24,18,5],[112,36,20,4]];
+    var gy = function (x) { return 68 + 9 * Math.sin(x / 37 + 1) + 4 * Math.sin(x / 15 + 2); };
+    var clamp = function (i, n) { return Math.max(0, Math.min(n - 1, i)); };
+    var img = ctx.createImageData(W, H), px = img.data, cache = {};
+    for (var y = 0; y < H; y++) {
+      for (var x = 0; x < W; x++) {
+        var b = bayer[(y % 4) * 4 + (x % 4)] / 16 - .5, col, g = gy(x);
+        if (y >= g) {
+          var t = Math.min(1, (y - g) / (H - g));
+          var lt = 1 - t * .9 + (x < W * .35 ? .1 : 0);
+          col = grass[clamp(Math.round(lt * (grass.length - 1) + b * 1.2), grass.length)];
+        } else {
+          col = sky[clamp(Math.round((y / g) * (sky.length - 1) + b * 1.2), sky.length)];
+          for (var k = 0; k < clouds.length; k++) {
+            var c = clouds[k], dx = (x - c[0]) / c[2], dy = (y - c[1]) / c[3];
+            if (dx * dx + dy * dy + .18 * Math.sin(x * .9 + y * .5) < 1) { col = dy > .25 ? "#cfdff7" : "#ffffff"; }
+          }
+        }
+        var rgb = cache[col] || (cache[col] = [parseInt(col.substr(1, 2), 16), parseInt(col.substr(3, 2), 16), parseInt(col.substr(5, 2), 16)]);
+        var o = (y * W + x) * 4; px[o] = rgb[0]; px[o + 1] = rgb[1]; px[o + 2] = rgb[2]; px[o + 3] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0); // one write instead of ~26,000 tiny draws
+  }
+  }
+  function useArt() { wallImg.style.display = "none"; wall.hidden = false; drawArt(); }
+  if (wallImg.complete && !wallImg.naturalWidth) { useArt(); }
+  else { wallImg.addEventListener("error", useArt, { once: true }); }
+
+  // ---------- desktop clock + icon selection ----------
+  var clock = document.getElementById("xpClock");
+  function tick() { clock.textContent = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }); }
+  tick(); var clockTimer = setInterval(tick, 20000);
+
+  var icons = document.querySelectorAll(".xp-icon");
+  function clearSel() { Array.prototype.forEach.call(icons, function (o) { o.classList.remove("sel"); }); }
+  Array.prototype.forEach.call(icons, function (b) {
+    b.addEventListener("click", function () { clearSel(); b.classList.add("sel"); });
+  });
+  document.getElementById("xpDesktop").addEventListener("click", function (e) {
+    if (!e.target.closest(".xp-icon")) clearSel();
+  });
+
+  // ---------- modal manager ----------
+  var current = null, opener = null, hooks = {};
+  function openModal(id, from) {
+    if (current) closeModal(true);
+    var ov = document.getElementById(id);
+    if (!ov) return;
+    ov.hidden = false;
+    document.body.classList.add("modal-open");
+    current = ov; opener = from || null;
+    if (hooks[id] && hooks[id].open) hooks[id].open();
+    var f = ov.querySelector("[data-close]");
+    if (f) f.focus();
+  }
+  function closeModal(skipFocus) {
+    if (!current) return;
+    var id = current.id;
+    current.hidden = true;
+    document.body.classList.remove("modal-open");
+    if (hooks[id] && hooks[id].close) hooks[id].close();
+    var o = opener;
+    current = null; opener = null;
+    if (!skipFocus && o) o.focus();
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-open]");
+    if (t) { e.preventDefault(); openModal(t.getAttribute("data-open"), t); return; }
+    if (e.target.closest("[data-close]")) { closeModal(); return; }
+    if (current && e.target === current) closeModal();
+  }, { signal: signal });
+  document.addEventListener("keydown", function (e) {
+    var t = e.target.closest && e.target.closest("a[role=button][data-open]");
+    if (t && e.key === " ") { e.preventDefault(); t.click(); return; }
+    if (!current) return;
+    if (e.key === "Escape") { closeModal(); return; }
+    if (e.key === "Tab") {
+      var f = Array.prototype.filter.call(
+        current.querySelectorAll("button:not([disabled]), a[href], input, textarea"),
+        function (n) { return n.offsetParent !== null; });
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }, { signal: signal });
+
+  // ---------- Start menu (opens/closes on click; no animation, no timers) ----------
+  var startBtn = document.getElementById("startBtn");
+  var startMenu = document.getElementById("startMenu");
+  function menuOpen(on) {
+    startMenu.hidden = !on;
+    startBtn.setAttribute("aria-expanded", on ? "true" : "false");
+    startBtn.classList.toggle("on", on);
+  }
+  startBtn.addEventListener("click", function (e) { e.stopPropagation(); menuOpen(startMenu.hidden); });
+  startMenu.addEventListener("click", function (e) {
+    var it = e.target.closest("[data-open]");
+    if (it) {                                   // open a popup from the menu
+      e.stopPropagation();
+      menuOpen(false);
+      openModal(it.getAttribute("data-open"), startBtn);
+      return;
+    }
+    if (e.target.closest("button, a")) menuOpen(false);   // fake items and page links just close the menu
+  });
+  document.addEventListener("click", function (e) {
+    if (!startMenu.hidden && !e.target.closest("#startMenu, #startBtn")) menuOpen(false);
+  }, { signal: signal });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !startMenu.hidden && !current) { menuOpen(false); startBtn.focus(); }
+  }, { signal: signal });
+
+  // ---------- NotSteam: switch entries + find the real download path ----------
+  var items = document.querySelectorAll(".ns-item");
+  Array.prototype.forEach.call(items, function (btn) {
+    btn.addEventListener("click", function () {
+      Array.prototype.forEach.call(items, function (o) { o.classList.remove("on"); });
+      btn.classList.add("on");
+      Array.prototype.forEach.call(document.querySelectorAll(".ns-panel"), function (p) { p.hidden = true; });
+      document.getElementById(btn.getAttribute("data-panel")).hidden = false;
+    });
+  });
+  function probe(a) {
+    var paths = a.getAttribute("data-paths").split("|");
+    a.setAttribute("href", paths[0]);
+    (function tryAt(i) {
+      if (i >= paths.length) return;
+      fetch(paths[i], { method: "HEAD" })
+        .then(function (r) { if (r.ok) { a.setAttribute("href", paths[i]); } else { tryAt(i + 1); } })
+        .catch(function () { tryAt(i + 1); });
+    })(0);
+  }
+  hooks.warezModal = { open: function () {
+    Array.prototype.forEach.call(document.querySelectorAll("a.ns-dl[data-paths]"), probe);
+  } };
+
+  // ---------- video player (1million.mp4, starts at 50% volume) ----------
+  var video = document.getElementById("wmpVideo");
+  var playBtn = document.getElementById("wmpPlay");
+  var stopBtn = document.getElementById("wmpStop");
+  var seek = document.getElementById("wmpSeek");
+  var timeEl = document.getElementById("wmpTime");
+  var muteBtn = document.getElementById("wmpMute");
+  var vol = document.getElementById("wmpVol");
+  var errorEl = document.getElementById("wmpError");
+
+  video.volume = 0.5;
+  vol.value = 0.5;
+
+  function fmt(t) {
+    if (!isFinite(t)) return "0:00";
+    var m = Math.floor(t / 60), s = Math.floor(t % 60);
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+  function updateTime() {
+    seek.max = isFinite(video.duration) ? video.duration : 100;
+    seek.value = video.currentTime;
+    timeEl.textContent = fmt(video.currentTime) + " / " + fmt(video.duration);
+  }
+  function syncPlay() {
+    var playing = !video.paused;
+    playBtn.classList.toggle("playing", playing);
+    playBtn.setAttribute("aria-label", playing ? "Pause" : "Play");
+  }
+  function showError() { errorEl.hidden = false; }
+
+  hooks.wmpOverlay = {
+    open: function () {
+      errorEl.hidden = true;
+      window.dispatchEvent(new Event("anya:pause-music"));
+      var p = video.play();
+      if (p && p.catch) p.catch(function (e) { if (e && e.name !== "AbortError") showError(); });
+    },
+    close: function () {
+      video.pause();
+      video.currentTime = 0;
+      updateTime();
+      syncPlay();
+    }
+  };
+
+  function toggle() { if (video.paused) { video.play().catch(showError); } else { video.pause(); } }
+  playBtn.addEventListener("click", toggle);
+  video.addEventListener("click", toggle);
+  stopBtn.addEventListener("click", function () { video.pause(); video.currentTime = 0; updateTime(); });
+  seek.addEventListener("input", function () { video.currentTime = parseFloat(seek.value); });
+  vol.addEventListener("input", function () { video.volume = parseFloat(vol.value); video.muted = false; });
+  muteBtn.addEventListener("click", function () { video.muted = !video.muted; });
+  video.addEventListener("volumechange", function () {
+    muteBtn.classList.toggle("muted", video.muted || video.volume === 0);
+    muteBtn.setAttribute("aria-label", video.muted ? "Unmute" : "Mute");
+  });
+  video.addEventListener("play", syncPlay);
+  video.addEventListener("pause", syncPlay);
+  video.addEventListener("ended", syncPlay);
+  video.addEventListener("timeupdate", updateTime);
+  video.addEventListener("loadedmetadata", updateTime);
+  video.addEventListener("error", showError);
+
+  // ---------- guestbook ----------
+  // Shared guestbook storage (Google Apps Script web app, see guestbook-backend.gs). Keep this line when editing.
+  var GUESTBOOK_URL = "https://script.google.com/macros/s/AKfycbzh3yRGkbX0SamtNiBWPfw4TUjGS4bghwUOkgiNFz3gMTF4ACwqcbor0hGmuyvmOlp-dQ/exec";
+
+  var KEY = "anya-guestbook", LAST = "anya-guestbook-last";
+  var log = document.getElementById("imLog");
+  var form = document.getElementById("gbForm");
+  var note = document.getElementById("gbNote");
+  var shared = !!GUESTBOOK_URL, loaded = false;
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function nice(t) {
+    var d = new Date(t);
+    return isNaN(d) ? String(t || "") : d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  }
+  function local() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function render(entry) {                      // grey default avatar + the name they typed (or "Anonymous")
+    var div = document.createElement("div");
+    div.className = "im-msg";
+    var who = String(entry.name || "").trim().slice(0, 30) || "Anonymous";
+    div.innerHTML =
+      '<svg class="im-avatar" viewBox="0 0 40 40" aria-hidden="true"><use href="#anon"/></svg>' +
+      '<div class="im-body"><span class="im-name">' + esc(who) + '</span> ' +
+      '<span class="im-time">(' + esc(nice(entry.time || entry.date)) + ')</span>: ' +
+      esc(entry.msg || "").replace(/\n/g, "<br>") +
+      (entry.sig ? '<div class="im-sig">' + esc(entry.sig) + '</div>' : '') + '</div>';
+    log.appendChild(div);
+  }
+  function renderAll(list) {
+    Array.prototype.forEach.call(log.querySelectorAll(".im-msg"), function (n) { n.remove(); });
+    list.forEach(render);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  // load messages once, the first time the guestbook window is opened
+  hooks.aimModal = { open: function () {
+    if (loaded) return;
+    loaded = true;
+    if (!shared) { renderAll(local()); return; }
+    fetch(GUESTBOOK_URL)
+      .then(function (r) { return r.json(); })
+      .then(function (list) { renderAll(Array.isArray(list) ? list : []); })
+      .catch(function () { renderAll(local()); note.textContent = "Couldn't reach the guestbook right now."; });
+  } };
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var entry = {
+      name: document.getElementById("gbName").value.trim().slice(0, 30),
+      msg: document.getElementById("gbMsg").value.trim().slice(0, 500),
+      sig: document.getElementById("gbSig").value.trim().slice(0, 200),
+      time: new Date().toISOString()
+    };
+    if (!entry.msg) return;
+    if (document.getElementById("gbHp").value) { form.reset(); return; }          // bot: pretend it worked
+    var last = 0; try { last = +localStorage.getItem(LAST) || 0; } catch (e) {}
+    if (Date.now() - last < 20000) { note.textContent = "Slow down! Wait a few seconds before sending again."; return; }
+    try { localStorage.setItem(LAST, String(Date.now())); } catch (e) {}
+    render(entry); log.scrollTop = log.scrollHeight;
+    if (shared) {
+      fetch(GUESTBOOK_URL, { method: "POST", body: JSON.stringify({ name: entry.name, msg: entry.msg, sig: entry.sig }) })
+        .catch(function () { note.textContent = "Couldn't send that one. Try again in a moment."; });
+    } else {
+      var all = local(); all.push(entry);
+      try { localStorage.setItem(KEY, JSON.stringify(all)); } catch (e) {}
+    }
+    form.reset();
+  });
+
+  // clean up when navigating to another page without a reload
+  signal.addEventListener("abort", function () {
+    clearInterval(clockTimer);
+    video.pause();
+    document.body.classList.remove("modal-open");
+  });
+})();
+</script>
+</body>
+</html>

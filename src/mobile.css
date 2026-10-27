@@ -1,0 +1,101 @@
+
+/* =====================================================================
+   PHONE LAYOUT  (html.m is set by a tiny script in <head>: narrow screens
+   <=700px wide, or touch-only devices up to 960px such as a phone on its side)
+   Designed around a Pixel 9 (412 x ~915 CSS px). No extra images, no animation.
+   ===================================================================== */
+html.m { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+html.m body { padding: 8px 8px calc(78px + env(safe-area-inset-bottom)) 8px; font-size: 15px; }
+html.m body::before { background-position: 50% 0; }
+
+/* bottom dock replaces the left hover taskbar */
+html.m #taskbar {
+  left: 0; right: 0; top: auto; bottom: 0; transform: none; width: auto; height: calc(64px + env(safe-area-inset-bottom));
+  display: flex; justify-content: space-evenly; align-items: flex-start; padding: 6px 8px env(safe-area-inset-bottom);
+  border-radius: 18px 18px 0 0; border: 1px solid rgba(255,255,255,.45); border-bottom: 0;
+  transition: none; overflow: visible;
+}
+html.m #taskbar:hover, html.m #taskbar:focus-within { width: auto; }
+html.m .tb-link { flex-direction: column; justify-content: center; gap: 1px; height: 52px; min-width: 76px; padding: 0 6px; font-size: 11px; }
+html.m .tb-link svg { width: 30px; height: 30px; }
+html.m .tb-label { opacity: 1; }
+
+/* music button: small, top-right so it never covers the title */
+html.m #musicBtn { top: 10px; left: auto; right: 10px; width: 44px; height: 44px; }
+html.m #musicBtn svg { width: 22px; height: 22px; }
+
+html.m #wrapper { padding: 8px; border-radius: 14px; }
+html.m .stage { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+html.m .stage > #wrapper { grid-column: 1; }
+
+/* title scales with the screen width */
+html.m .hero { padding: 6px 6px 2px; border-radius: 10px; }
+html.m .wm { gap: 2.5vw; padding: 6px 0 14px; max-width: 100%; }
+html.m .wm-orb { width: 17vw; height: 17vw; max-width: 84px; max-height: 84px; }
+html.m .wm-t { font-size: min(15vw, 78px); }
+html.m .wm-r { top: min(13vw, 66px); }
+html.m h1.wordart { padding-right: 36px; } /* leaves room for the music button */
+
+html.m .ticker { font-size: 12px; margin: 8px 0; }
+html.m .box { margin-bottom: 10px; border-radius: 9px; }
+html.m .box h2 { font-size: 15px; padding: 9px 12px; }
+html.m .pad { padding: 8px; }
+
+/* fake desktop: tall phone-shaped screen, big tap targets */
+html.m .xp-desktop { height: min(66dvh, 560px); min-height: 400px; border-width: 2px; }
+html.m .xp-icons { left: 4px; top: 6px; bottom: 44px; gap: 6px; }
+html.m .xp-icon { width: 86px; padding: 6px 4px; }
+html.m .xp-icon svg { width: 54px; height: 54px; }
+html.m .xp-label { font-size: 12px; }
+html.m .xp-bin { right: 4px; bottom: 44px; }
+html.m .xp-taskbar { height: 40px; }
+html.m .xp-start { font-size: 20px; padding: 0 20px 0 10px; }
+html.m .xp-fox { display: none; }
+html.m .sm { left: 2px; right: 2px; width: auto; bottom: 42px; max-height: calc(100% - 46px); }
+html.m .sm-item, html.m .sm-link { min-height: 40px; }
+html.m .sm-right { display: none; }
+
+html.m a.ad { height: 56px; margin: 4px auto 10px; }
+html.m .ad-prize .big { font-size: 17px; }
+html.m .construction .fb-missing { max-width: 100%; }
+html.m footer { font-size: 11px; padding: 0 6px; }
+
+/* every popup becomes a full-screen sheet */
+html.m .modal-overlay, html.m .wmp-overlay { padding: 0; align-items: stretch; }
+html.m .im-modal, html.m .gs, html.m .ns, html.m .wmp {
+  width: 100%; max-width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; margin: 0;
+  display: flex; flex-direction: column; overflow: auto; padding-bottom: env(safe-area-inset-bottom);
+}
+html.m .gs-body, html.m .ns-body { flex: 1; min-height: 0; }
+html.m .gs-list, html.m .ns-main { max-height: none; }
+html.m .im-log { height: auto; min-height: 220px; flex: 1; }
+html.m .im-form input[type=text], html.m .im-form textarea, html.m .gs-search input { font-size: 16px; } /* stops mobile zoom-on-focus */
+html.m .im-winbtns button, html.m .gs-winbtns button, html.m .ns-winbtns button, html.m .wmp-winbtns button { min-width: 40px; min-height: 30px; }
+html.m .im-actions button, html.m .im-form button { min-height: 40px; }
+html.m .wmp video { max-height: 56dvh; }
+html.m .wmp-vol { width: 70px; }
+
+/* profile cards: full width, art scales a little taller */
+html.m .pf { max-width: 420px; width: calc(100% - 12px); margin-left: auto; margin-right: auto; }
+html.m .df-art, html.m .np-art { height: min(58vw, 240px); }
+html.m .wow-portrait { width: min(46vw, 180px); height: min(46vw, 180px); }
+
+/* About / Mimi */
+html.m .solo { padding-bottom: 12px; }
+html.m .solo img.rat, html.m .solo img.mimi { max-width: 100%; max-height: 70dvh; }
+
+/* landscape phone: shorter desktop, smaller dock */
+@media (max-height: 480px) {
+  html.m .xp-desktop { height: 76dvh; min-height: 260px; }
+  html.m .wm-orb { width: 11vh; height: 11vh; }
+  html.m .wm-t { font-size: min(18vh, 10vw); }
+  html.m .wm-r { display: none; }
+  html.m #taskbar { height: calc(52px + env(safe-area-inset-bottom)); }
+  html.m .tb-link { height: 42px; flex-direction: row; gap: 6px; font-size: 12px; }
+  html.m .tb-link svg { width: 24px; height: 24px; }
+  html.m body { padding-bottom: calc(62px + env(safe-area-inset-bottom)); }
+}
+@media (hover: none) {
+  .xp-icon:hover .xp-label { background: none; }
+  .xp-icon:hover svg, .tb-link:hover { filter: none; background: none; }
+}

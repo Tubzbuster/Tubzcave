@@ -327,6 +327,82 @@ def ico_volume():
     for k in [k for k, v in g.items() if v is None]: del g[k]
     return g
 
+
+# ---------- desktop icons for the three MMO profile popups ----------
+def _ell(g, cx, cy, rx, ry, c):
+    for y in range(24):
+        for x in range(24):
+            if ((x + .5 - cx) / rx) ** 2 + ((y + .5 - cy) / ry) ** 2 <= 1:
+                g[(x, y)] = c
+
+def wow_icon():
+    g = {}
+    # shield: gold rim, blue / navy quarters
+    for y in range(2, 23):
+        t = (y - 2) / 20.0
+        hw = 9.2 * (1 - max(0, t - .45) / .55) ** .75 if t > .45 else 9.2
+        for x in range(24):
+            dx = abs(x + .5 - 12)
+            if dx <= hw:
+                rim = dx > hw - 1.3 or y < 3.5 or (t > .45 and dx > hw - 1.9)
+                if rim: c = '#e8b83a' if (x + y) % 5 else '#fff0a0'
+                else: c = '#2c6fd6' if ((x + .5 < 12) == (y < 11)) else '#14316e'
+                g[(x, y)] = c
+    # sword: silver blade, gold guard + grip
+    for y in range(24):
+        for x in range(24):
+            px, py = x + .5, y + .5
+            if dseg(px, py, (17.5, 4.5), (9.5, 14.5)) <= .95: g[(x, y)] = '#f2f6fb'
+            if dseg(px, py, (17.5, 4.5), (18.5, 3.5)) <= 1.0: g[(x, y)] = '#ffffff'
+            if dseg(px, py, (7.2, 12.4), (12.6, 16.2)) <= .95: g[(x, y)] = '#ffd34a'
+            if dseg(px, py, (9.5, 14.5), (6.5, 19.5)) <= .95: g[(x, y)] = '#7a3b12'
+    for (x, y) in outline_from(set(g), 24):
+        g[(x, y)] = '#0a0f1c'
+    return g
+
+def df_icon():
+    g = {}
+    # horns
+    for y in range(24):
+        for x in range(24):
+            px, py = x + .5, y + .5
+            if dseg(px, py, (6.5, 9), (3.2, 2.2)) <= 1.5 or dseg(px, py, (17.5, 9), (20.8, 2.2)) <= 1.5:
+                g[(x, y)] = '#f1e4c0'
+    _ell(g, 12, 13.5, 8.6, 8.2, '#c72b12')
+    _ell(g, 12, 17.2, 5.4, 4.6, '#e8683a')           # snout
+    _ell(g, 12, 9.0, 8.0, 3.4, '#d83c1a')            # brow
+    for sx in (7.2, 16.8):                            # eyes: yellow with slit
+        _ell(g, sx, 10.6, 2.3, 1.6, '#ffe03a')
+        for y in range(8, 14):
+            g[(int(sx - .5 + .5), y)] = g.get((int(sx), y), '#ffe03a') if False else g.get((int(sx), y))
+        g[(int(sx), 10)] = '#1a0402'; g[(int(sx), 11)] = '#1a0402'
+    g[(10, 17)] = '#3a0a04'; g[(13, 17)] = '#3a0a04'  # nostrils
+    for x in (8, 15):                                  # fangs
+        g[(x, 20)] = '#ffffff'; g[(x, 21)] = '#ffffff'
+    for (x, y) in outline_from(set(g), 24):
+        g[(x, y)] = '#2a0602'
+    return g
+
+def np_icon():
+    g = {}
+    _ell(g, 12, 12, 11, 11, '#3b8ee8')
+    for y in range(24):
+        for x in range(24):
+            if math.hypot(x + .5 - 12, y + .5 - 12) <= 11 and math.hypot(x + .5 - 12, y + .5 - 12) > 9.6: g[(x, y)] = '#ffffff'
+    for ex, e1 in ((7, (5.5, 4)), (17, (18.5, 4))):   # ears
+        for y in range(24):
+            for x in range(24):
+                if abs(x + .5 - ex) <= (9 - y) * .55 and 3 <= y <= 9: g[(x, y)] = '#ffc93a'
+    _ell(g, 12, 13.5, 7.6, 6.8, '#ffd84a')            # face
+    for sx in (9, 15):
+        _ell(g, sx, 12.5, 1.4, 1.7, '#14243e'); g[(sx - 1, 11)] = '#ffffff'
+    for x in range(9, 16):                             # smile
+        y = 16 + (1 if 10 <= x <= 13 else 0)
+        g[(x, y)] = '#a8430a'
+    g[(12, 14)] = '#e8590c'; g[(11, 14)] = '#e8590c'; g[(11, 15)] = None; g.pop((11, 15), None)
+    _ell(g, 6.5, 15.5, 1.2, .9, '#ff9a8a'); _ell(g, 17.5, 15.5, 1.2, .9, '#ff9a8a')
+    return g
+
 _cw, _cg = cat_avatar()
 
 SPRITE = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">'
@@ -336,6 +412,7 @@ SPRITE = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true
           + emit('px-folder', 16, ico_folder()) + emit('px-pic', 16, ico_pic()) + emit('px-music', 16, ico_music())
           + emit('px-pc', 16, ico_pc()) + emit('px-gear', 16, ico_gear()) + emit('px-help', 16, ico_help())
           + emit('px-power', 16, ico_power()) + emit('px-cat', _cw, _cg)
+          + emit('px-wow', 24, wow_icon()) + emit('px-df', 24, df_icon()) + emit('px-np', 24, np_icon())
           + emit('px-fox', 16, ico_fox()) + emit('px-vol', 16, ico_volume())
           + '<symbol id="anon" viewBox="0 0 40 40"><defs><linearGradient id="gAnon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3d9df"/><stop offset="1" stop-color="#b4bcc5"/></linearGradient></defs><rect width="40" height="40" fill="url(#gAnon)"/><circle cx="20" cy="15.5" r="7" fill="#f4f6f8"/><path d="M5 40C5 29 11 24.5 20 24.5S35 29 35 40Z" fill="#f4f6f8"/></symbol>'
           + '''<symbol id="grape" viewBox="0 0 48 48">

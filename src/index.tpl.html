@@ -52,6 +52,18 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-aim"/></svg>
             <span class="xp-label">Guestbook</span>
           </button>
+          <button type="button" class="xp-icon" data-open="wowModal" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-wow"/></svg>
+            <span class="xp-label">WoW.exe</span>
+          </button>
+          <button type="button" class="xp-icon" data-open="dfModal" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-df"/></svg>
+            <span class="xp-label">DragonFable</span>
+          </button>
+          <button type="button" class="xp-icon" data-open="npModal" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-np"/></svg>
+            <span class="xp-label">Neopets</span>
+          </button>
         </div>
 
         <button type="button" class="xp-icon xp-bin">
@@ -66,6 +78,9 @@
               <button type="button" class="sm-item" role="menuitem" data-open="movieModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-cd"/></svg><span>Movies (D:)</span></button>
               <button type="button" class="sm-item" role="menuitem" data-open="warezModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-warez"/></svg><span>WareZ</span></button>
               <button type="button" class="sm-item" role="menuitem" data-open="aimModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-aim"/></svg><span>Guestbook</span></button>
+              <button type="button" class="sm-item" role="menuitem" data-open="wowModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-wow"/></svg><span>WoW.exe</span></button>
+              <button type="button" class="sm-item" role="menuitem" data-open="dfModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-df"/></svg><span>DragonFable</span></button>
+              <button type="button" class="sm-item" role="menuitem" data-open="npModal"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-np"/></svg><span>Neopets</span></button>
               <button type="button" class="sm-item" role="menuitem" data-open="wmpOverlay"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#px-film"/></svg><span>Media Player</span></button>
               <button type="button" class="sm-item" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-pic"/></svg><span>Paint</span></button>
               <button type="button" class="sm-item" role="menuitem"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#px-music"/></svg><span>Sound Recorder</span></button>
@@ -265,6 +280,28 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- =====  LOW-RES PROFILE POPUPS (images/pf-*.png are made by the build) ===== -->
+<div class="modal-overlay" id="wowModal" hidden>
+  <section class="lr" role="dialog" aria-modal="true" aria-label="WoW.exe">
+    <div class="lr-bar"><span>WoW.exe</span><button type="button" data-close aria-label="Close">x</button></div>
+    <div class="lr-body"><img class="fb lr-img" data-srcs="images/pf-wow.png" data-missing="profile preview" alt="" decoding="async"></div>
+  </section>
+</div>
+
+<div class="modal-overlay" id="dfModal" hidden>
+  <section class="lr" role="dialog" aria-modal="true" aria-label="dragonfable.exe">
+    <div class="lr-bar"><span>dragonfable.exe</span><button type="button" data-close aria-label="Close">x</button></div>
+    <div class="lr-body"><img class="fb lr-img" data-srcs="images/pf-df.png" data-missing="profile preview" alt="" decoding="async"></div>
+  </section>
+</div>
+
+<div class="modal-overlay" id="npModal" hidden>
+  <section class="lr" role="dialog" aria-modal="true" aria-label="neopets.exe">
+    <div class="lr-bar"><span>neopets.exe</span><button type="button" data-close aria-label="Close">x</button></div>
+    <div class="lr-body"><img class="fb lr-img" data-srcs="images/pf-np.png" data-missing="profile preview" alt="" decoding="async"></div>
+  </section>
 </div>
 
 <!-- =====================================================================

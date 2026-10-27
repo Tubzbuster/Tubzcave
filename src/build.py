@@ -167,3 +167,6 @@ open(OUT + 'mimi.html', 'w', encoding='utf-8').write(MIMI_HTML)
 open(OUT + 'style.css', 'w', encoding='utf-8').write(css)
 open(OUT + 'site.js', 'w', encoding='utf-8').write(open(W + 'site.js', encoding='utf-8').read())
 print('built', len(tpl), len(css))
+
+import lowres
+lowres.render_lowres(OUT)

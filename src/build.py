@@ -159,7 +159,7 @@ for k, v in {'{{SPRITE}}': SPRITE, '{{MUSIC_BTN}}': MUSIC_BTN, '{{TASKBAR}}': ta
              '{{TICKER}}': TICKER, '{{CONSTRUCTION}}': CONSTRUCTION, '{{ORB}}': ORB, '{{WORDART}}': WORDART, '{{PROFILES_L}}': profiles.LEFT, '{{PROFILES_R}}': profiles.RIGHT}.items():
     assert k in tpl, k
     tpl = tpl.replace(k, v)
-css = (open(W + 'style.tpl.css', encoding='utf-8').read() + open(W + 'profiles.css', encoding='utf-8').read() + (open(W + 'mobile.css', encoding='utf-8').read() if os.path.exists(W + 'mobile.css') else '')).replace('{{BG}}', BG)
+css = (open(W + 'style.tpl.css', encoding='utf-8').read() + open(W + 'profiles.css', encoding='utf-8').read() + open(W + 'xpmenu.css', encoding='utf-8').read() + (open(W + 'mobile.css', encoding='utf-8').read() if os.path.exists(W + 'mobile.css') else '')).replace('{{BG}}', BG)
 
 open(OUT + 'index.html', 'w', encoding='utf-8').write(tpl)
 open(OUT + 'about.html', 'w', encoding='utf-8').write(ABOUT_HTML)

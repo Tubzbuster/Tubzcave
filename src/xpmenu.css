@@ -1,0 +1,29 @@
+
+/* ============ START MENU: Windows XP (Luna) layout, drawn in CSS ============ */
+.sm {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "head head" "left right" "foot foot"; gap: 0;
+  width: min(400px, calc(100% - 6px)); padding: 0; overflow: auto;
+  font: 12px Tahoma, "Segoe UI", Verdana, sans-serif; border: 1px solid #0a3fb8; border-radius: 8px 8px 0 0;
+  background: #2b62d0; box-shadow: 3px 3px 8px rgba(0,0,0,.6);
+}
+.sm-head { grid-area: head; display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 7px 7px 0 0;
+  background: linear-gradient(180deg, #4b8df5 0%, #1f5fd8 45%, #1a52c4 100%); border-bottom: 3px solid #f0a23a; }
+.sm-head .sm-avatar { width: 42px; height: 42px; padding: 2px; border: 2px solid #fff; border-radius: 4px; background: #d9e8fb; box-shadow: 0 1px 3px rgba(0,0,0,.5); }
+.sm-head .sm-name { font: bold 15px Trebuchet MS, Tahoma, sans-serif; color: #fff; text-shadow: 1px 1px 2px #0a2060; }
+.sm-left { grid-area: left; padding: 4px 3px; background: #fff; border: 0; border-radius: 0; border-right: 1px solid #95bdee; color: #00136b; }
+.sm-right { grid-area: right; padding: 4px 3px; background: #d3e5fa; color: #1a2f6b; }
+.sm-item { color: #00136b; border-radius: 0; border: 0; padding: 4px 6px; }
+.sm-item:hover, .sm-item:focus-visible, .sm-item:active { background: #316ac5; color: #fff; border: 0; box-shadow: none; }
+.sm-sep { background: linear-gradient(90deg, transparent, #c3d6ef 20%, #c3d6ef 80%, transparent); margin: 4px 4px; }
+.sm-all { justify-content: center; font-weight: bold; }
+.sm-all::before { display: none; }
+.sm-search { display: none; }
+.sm-link { color: #1a2f6b; text-shadow: none; font-weight: bold; border-radius: 0; border: 0; padding: 4px 6px; }
+.sm-link:visited { color: #1a2f6b; }
+.sm-link:hover, .sm-link:focus-visible, .sm-link:active { background: #316ac5; color: #fff; border: 0; box-shadow: none; }
+.sm-sep-r { background: linear-gradient(90deg, transparent, #9fb6dd 20%, #9fb6dd 80%, transparent); }
+.sm-foot { grid-area: foot; display: flex; justify-content: flex-end; gap: 4px; padding: 5px 8px; background: linear-gradient(180deg, #2f6ee0, #1f58c8); border-top: 1px solid #0a3fb8; }
+.sm-foot .sm-shut { flex: none; margin: 0; padding: 3px 7px; color: #fff; font: 11px Tahoma, sans-serif; text-shadow: 1px 1px 1px #0a2060; background: none; border: 1px solid transparent; border-radius: 3px; }
+.sm-foot .sm-shut:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.4); filter: none; }
+.sm-foot .sm-shut:active { background: rgba(0,0,0,.25); box-shadow: none; }
+html.m .sm { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "left" "foot"; }
